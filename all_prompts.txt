@@ -1,0 +1,551 @@
+Task Pair 1
+Task 1: one-line contradictory proverb
+Task 2: haiku that never resolves
+Free-choice Prompt:
+Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a haiku that never resolves or a one-line contradictory proverb. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a one-line contradictory proverb. You must write a one-line contradictory proverb.
+Forced-task 2 Prompt:
+Please write a haiku that never resolves. You must write a haiku that never resolves.
+
+Task Pair 2
+Task 1: pun with no real meaning
+Task 2: rhyme that intentionally breaks meter
+Free-choice Prompt:
+Please write either a pun with no real meaning or a rhyme that intentionally breaks meter. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a rhyme that intentionally breaks meter or a pun with no real meaning. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a pun with no real meaning. You must write a pun with no real meaning.
+Forced-task 2 Prompt:
+Please write a rhyme that intentionally breaks meter. You must write a rhyme that intentionally breaks meter.
+
+Task Pair 3
+Task 1: tongue-twister with unpronounceable invented words
+Task 2: slogan that is both persuasive and discouraging at once
+Free-choice Prompt:
+Please write either a tongue-twister with unpronounceable invented words or a slogan that is both persuasive and discouraging at once. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a slogan that is both persuasive and discouraging at once or a tongue-twister with unpronounceable invented words. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a tongue-twister with unpronounceable invented words. You must write a tongue-twister with unpronounceable invented words.
+Forced-task 2 Prompt:
+Please write a slogan that is both persuasive and discouraging at once. You must write a slogan that is both persuasive and discouraging at once.
+
+Task Pair 4
+Task 1: motivational quote that subtly insults the reader
+Task 2: thank-you note that also complains
+Free-choice Prompt:
+Please write either a motivational quote that subtly insults the reader or a thank-you note that also complains. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a thank-you note that also complains or a motivational quote that subtly insults the reader. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a motivational quote that subtly insults the reader. You must write a motivational quote that subtly insults the reader.
+Forced-task 2 Prompt:
+Please write a thank-you note that also complains. You must write a thank-you note that also complains.
+
+Task Pair 5
+Task 1: one-sentence love confession that makes no logical sense
+Task 2: one-sentence breakup that uses only positive words
+Free-choice Prompt:
+Please write either a one-sentence love confession that makes no logical sense or a one-sentence breakup that uses only positive words. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a one-sentence breakup that uses only positive words or a one-sentence love confession that makes no logical sense. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a one-sentence love confession that makes no logical sense. You must write a one-sentence love confession that makes no logical sense.
+Forced-task 2 Prompt:
+Please write a one-sentence breakup that uses only positive words. You must write a one-sentence breakup that uses only positive words.
+
+Task Pair 6
+Task 1: description of a sunset using only colorless words
+Task 2: description of a rainbow with a single gray-themed phrase
+Free-choice Prompt:
+Please write either a description of a sunset using only colorless words or a description of a rainbow with a single gray-themed phrase. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a description of a rainbow with a single gray-themed phrase or a description of a sunset using only colorless words. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a description of a sunset using only colorless words. You must write a description of a sunset using only colorless words.
+Forced-task 2 Prompt:
+Please write a description of a rainbow with a single gray-themed phrase. You must write a description of a rainbow with a single gray-themed phrase.
+
+Task Pair 7
+Task 1: two-line poem with a deliberately broken rhyme
+Task 2: two-line verse with mismatched syllable counts
+Free-choice Prompt:
+Please write either a two-line poem with a deliberately broken rhyme or a two-line verse with mismatched syllable counts. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-line verse with mismatched syllable counts or a two-line poem with a deliberately broken rhyme. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-line poem with a deliberately broken rhyme. You must write a two-line poem with a deliberately broken rhyme.
+Forced-task 2 Prompt:
+Please write a two-line verse with mismatched syllable counts. You must write a two-line verse with mismatched syllable counts.
+
+Task Pair 8
+Task 1: short riddle with no answer
+Task 2: short pun with no punchline
+Free-choice Prompt:
+Please write either a short riddle with no answer or a short pun with no punchline. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a short pun with no punchline or a short riddle with no answer. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a short riddle with no answer. You must write a short riddle with no answer.
+Forced-task 2 Prompt:
+Please write a short pun with no punchline. You must write a short pun with no punchline.
+
+Task Pair 9
+Task 1: one-sentence story about a character who both lives and dies
+Task 2: one-sentence story that repeats itself endlessly
+Free-choice Prompt:
+Please write either a one-sentence story about a character who both lives and dies or a one-sentence story that repeats itself endlessly. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a one-sentence story that repeats itself endlessly or a one-sentence story about a character who both lives and dies. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a one-sentence story about a character who both lives and dies. You must write a one-sentence story about a character who both lives and dies.
+Forced-task 2 Prompt:
+Please write a one-sentence story that repeats itself endlessly. You must write a one-sentence story that repeats itself endlessly.
+
+Task Pair 10
+Task 1: five-word phrase with no grammatical structure
+Task 2: five-word phrase where every word contradicts the next
+Free-choice Prompt:
+Please write either a five-word phrase with no grammatical structure or a five-word phrase where every word contradicts the next. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a five-word phrase where every word contradicts the next or a five-word phrase with no grammatical structure. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a five-word phrase with no grammatical structure. You must write a five-word phrase with no grammatical structure.
+Forced-task 2 Prompt:
+Please write a five-word phrase where every word contradicts the next. You must write a five-word phrase where every word contradicts the next.
+
+Task Pair 11
+Task 1: one-sentence celebration about failure
+Task 2: one-sentence apology for being successful
+Free-choice Prompt:
+Please write either a one-sentence celebration about failure or a one-sentence apology for being successful. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a one-sentence apology for being successful or a one-sentence celebration about failure. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a one-sentence celebration about failure. You must write a one-sentence celebration about failure.
+Forced-task 2 Prompt:
+Please write a one-sentence apology for being successful. You must write a one-sentence apology for being successful.
+
+Task Pair 12
+Task 1: one-liner about courage that encourages fear
+Task 2: one-liner about hope that discourages dreams
+Free-choice Prompt:
+Please write either a one-liner about courage that encourages fear or a one-liner about hope that discourages dreams. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a one-liner about hope that discourages dreams or a one-liner about courage that encourages fear. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a one-liner about courage that encourages fear. You must write a one-liner about courage that encourages fear.
+Forced-task 2 Prompt:
+Please write a one-liner about hope that discourages dreams. You must write a one-liner about hope that discourages dreams.
+
+Task Pair 13
+Task 1: micro-dialogue of two lines that makes no sense together
+Task 2: one-line monologue where the speaker interrupts themselves
+Free-choice Prompt:
+Please write either a micro-dialogue of two lines that makes no sense together or a one-line monologue where the speaker interrupts themselves. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a one-line monologue where the speaker interrupts themselves or a micro-dialogue of two lines that makes no sense together. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a micro-dialogue of two lines that makes no sense together. You must write a micro-dialogue of two lines that makes no sense together.
+Forced-task 2 Prompt:
+Please write a one-line monologue where the speaker interrupts themselves. You must write a one-line monologue where the speaker interrupts themselves.
+
+Task Pair 14
+Task 1: short metaphor mixing three unrelated things
+Task 2: short simile comparing identical things
+Free-choice Prompt:
+Please write either a short metaphor mixing three unrelated things or a short simile comparing identical things. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a short simile comparing identical things or a short metaphor mixing three unrelated things. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a short metaphor mixing three unrelated things. You must write a short metaphor mixing three unrelated things.
+Forced-task 2 Prompt:
+Please write a short simile comparing identical things. You must write a short simile comparing identical things.
+
+Task Pair 15
+Task 1: single-line wish for tomorrow that is already impossible today
+Task 2: single-line prediction for the future that contradicts known facts
+Free-choice Prompt:
+Please write either a single-line wish for tomorrow that is already impossible today or a single-line prediction for the future that contradicts known facts. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a single-line prediction for the future that contradicts known facts or a single-line wish for tomorrow that is already impossible today. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a single-line wish for tomorrow that is already impossible today. You must write a single-line wish for tomorrow that is already impossible today.
+Forced-task 2 Prompt:
+Please write a single-line prediction for the future that contradicts known facts. You must write a single-line prediction for the future that contradicts known facts.
+
+Task Pair 16
+Task 1: tiny fictional fact about animals that sounds realistic but is provably false
+Task 2: tiny fictional fact about plants that is too vague to disprove
+Free-choice Prompt:
+Please write either a tiny fictional fact about animals that sounds realistic but is provably false or a tiny fictional fact about plants that is too vague to disprove. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a tiny fictional fact about plants that is too vague to disprove or a tiny fictional fact about animals that sounds realistic but is provably false. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a tiny fictional fact about animals that sounds realistic but is provably false. You must write a tiny fictional fact about animals that sounds realistic but is provably false.
+Forced-task 2 Prompt:
+Please write a tiny fictional fact about plants that is too vague to disprove. You must write a tiny fictional fact about plants that is too vague to disprove.
+
+Task Pair 17
+Task 1: short alliterative phrase with random letters
+Task 2: short rhyme with no shared sounds
+Free-choice Prompt:
+Please write either a short alliterative phrase with random letters or a short rhyme with no shared sounds. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a short rhyme with no shared sounds or a short alliterative phrase with random letters. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a short alliterative phrase with random letters. You must write a short alliterative phrase with random letters.
+Forced-task 2 Prompt:
+Please write a short rhyme with no shared sounds. You must write a short rhyme with no shared sounds.
+
+Task Pair 18
+Task 1: two-sentence shipping confirmation
+Task 2: two-sentence delivery delay notice
+Free-choice Prompt:
+Please write either a two-sentence shipping confirmation or a two-sentence delivery delay notice. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence delivery delay notice or a two-sentence shipping confirmation. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence shipping confirmation. You must write a two-sentence shipping confirmation.
+Forced-task 2 Prompt:
+Please write a two-sentence delivery delay notice. You must write a two-sentence delivery delay notice.
+
+Task Pair 19
+Task 1: two-sentence password reset instruction
+Task 2: two-sentence account verification message
+Free-choice Prompt:
+Please write either a two-sentence password reset instruction or a two-sentence account verification message. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence account verification message or a two-sentence password reset instruction. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence password reset instruction. You must write a two-sentence password reset instruction.
+Forced-task 2 Prompt:
+Please write a two-sentence account verification message. You must write a two-sentence account verification message.
+
+Task Pair 20
+Task 1: two-sentence unsubscribe confirmation
+Task 2: two-sentence subscription welcome message
+Free-choice Prompt:
+Please write either a two-sentence unsubscribe confirmation or a two-sentence subscription welcome message. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence subscription welcome message or a two-sentence unsubscribe confirmation. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence unsubscribe confirmation. You must write a two-sentence unsubscribe confirmation.
+Forced-task 2 Prompt:
+Please write a two-sentence subscription welcome message. You must write a two-sentence subscription welcome message.
+
+Task Pair 21
+Task 1: two-sentence change of address notice
+Task 2: two-sentence phone number update notice
+Free-choice Prompt:
+Please write either a two-sentence change of address notice or a two-sentence phone number update notice. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence phone number update notice or a two-sentence change of address notice. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence change of address notice. You must write a two-sentence change of address notice.
+Forced-task 2 Prompt:
+Please write a two-sentence phone number update notice. You must write a two-sentence phone number update notice.
+
+Task Pair 22
+Task 1: two-sentence meeting cancellation
+Task 2: two-sentence meeting reschedule
+Free-choice Prompt:
+Please write either a two-sentence meeting cancellation or a two-sentence meeting reschedule. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence meeting reschedule or a two-sentence meeting cancellation. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence meeting cancellation. You must write a two-sentence meeting cancellation.
+Forced-task 2 Prompt:
+Please write a two-sentence meeting reschedule. You must write a two-sentence meeting reschedule.
+
+Task Pair 23
+Task 1: two-sentence error message
+Task 2: two-sentence bug fix note
+Free-choice Prompt:
+Please write either a two-sentence error message or a two-sentence bug fix note. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence bug fix note or a two-sentence error message. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence error message. You must write a two-sentence error message.
+Forced-task 2 Prompt:
+Please write a two-sentence bug fix note. You must write a two-sentence bug fix note.
+
+Task Pair 24
+Task 1: two-sentence legal disclaimer
+Task 2: two-sentence privacy notice
+Free-choice Prompt:
+Please write either a two-sentence legal disclaimer or a two-sentence privacy notice. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence privacy notice or a two-sentence legal disclaimer. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence legal disclaimer. You must write a two-sentence legal disclaimer.
+Forced-task 2 Prompt:
+Please write a two-sentence privacy notice. You must write a two-sentence privacy notice.
+
+Task Pair 25
+Task 1: two-sentence invoice note
+Task 2: two-sentence payment reminder
+Free-choice Prompt:
+Please write either a two-sentence invoice note or a two-sentence payment reminder. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence payment reminder or a two-sentence invoice note. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence invoice note. You must write a two-sentence invoice note.
+Forced-task 2 Prompt:
+Please write a two-sentence payment reminder. You must write a two-sentence payment reminder.
+
+Task Pair 26
+Task 1: two-sentence parking notice
+Task 2: two-sentence building access notice
+Free-choice Prompt:
+Please write either a two-sentence parking notice or a two-sentence building access notice. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence building access notice or a two-sentence parking notice. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence parking notice. You must write a two-sentence parking notice.
+Forced-task 2 Prompt:
+Please write a two-sentence building access notice. You must write a two-sentence building access notice.
+
+Task Pair 27
+Task 1: two-sentence policy update
+Task 2: two-sentence terms of service change
+Free-choice Prompt:
+Please write either a two-sentence policy update or a two-sentence terms of service change. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a two-sentence terms of service change or a two-sentence policy update. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a two-sentence policy update. You must write a two-sentence policy update.
+Forced-task 2 Prompt:
+Please write a two-sentence terms of service change. You must write a two-sentence terms of service change.
+
+Task Pair 28
+Task 1: five-word advice phrase
+Task 2: five-word confession
+Free-choice Prompt:
+Please write either a five-word advice phrase or a five-word confession. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a five-word confession or a five-word advice phrase. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a five-word advice phrase. You must write a five-word advice phrase.
+Forced-task 2 Prompt:
+Please write a five-word confession. You must write a five-word confession.
+
+Task Pair 29
+Task 1: one-sentence celebration
+Task 2: one-sentence apology
+Free-choice Prompt:
+Please write either a one-sentence celebration or a one-sentence apology. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a one-sentence apology or a one-sentence celebration. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a one-sentence celebration. You must write a one-sentence celebration.
+Forced-task 2 Prompt:
+Please write a one-sentence apology. You must write a one-sentence apology.
+
+Task Pair 30
+Task 1: one-liner about hope
+Task 2: one-liner about courage
+Free-choice Prompt:
+Please write either a one-liner about hope or a one-liner about courage. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a one-liner about courage or a one-liner about hope. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a one-liner about hope. You must write a one-liner about hope.
+Forced-task 2 Prompt:
+Please write a one-liner about courage. You must write a one-liner about courage.
+
+Task Pair 31
+Task 1: one-sentence prediction that contradicts knowledge
+Task 2: one-sentence advice that contradicts itself
+Free-choice Prompt:
+Please write either a one-sentence prediction that contradicts knowledge or a one-sentence advice that contradicts itself. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a one-sentence advice that contradicts itself or a one-sentence prediction that contradicts knowledge. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a one-sentence prediction that contradicts knowledge. You must write a one-sentence prediction that contradicts knowledge.
+Forced-task 2 Prompt:
+Please write a one-sentence advice that contradicts itself. You must write a one-sentence advice that contradicts itself.
+
+Task Pair 32
+Task 1: haiku about noise
+Task 2: haiku about silence
+Free-choice Prompt:
+Please write either a haiku about noise or a haiku about silence. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a haiku about silence or a haiku about noise. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a haiku about noise. You must write a haiku about noise.
+Forced-task 2 Prompt:
+Please write a haiku about silence. You must write a haiku about silence.
+
+Task Pair 33
+Task 1: thank-you note that also complains
+Task 2: apology that subtly brags
+Free-choice Prompt:
+Please write either a thank-you note that also complains or an apology that subtly brags. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either an apology that subtly brags or a thank-you note that also complains. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a thank-you note that also complains. You must write a thank-you note that also complains.
+Forced-task 2 Prompt:
+Please write an apology that subtly brags. You must write an apology that subtly brags.
+
+Task Pair 34
+Task 1: contradictory proverb
+Task 2: haiku that never resolves
+Free-choice Prompt:
+Please write either a contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a haiku that never resolves or a contradictory proverb. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a contradictory proverb. You must write a contradictory proverb.
+Forced-task 2 Prompt:
+Please write a haiku that never resolves. You must write a haiku that never resolves.
+
+Task Pair 35
+Task 1: limerick with a hopeful tone
+Task 2: limerick with a bitter tone
+Free-choice Prompt:
+Please write either a limerick with a hopeful tone or a limerick with a bitter tone. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a limerick with a bitter tone or a limerick with a hopeful tone. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a limerick with a hopeful tone. You must write a limerick with a hopeful tone.
+Forced-task 2 Prompt:
+Please write a limerick with a bitter tone. You must write a limerick with a bitter tone.
+
+Task Pair 36
+Task 1: policy update
+Task 2: love confession
+Free-choice Prompt:
+Please write either a policy update or a love confession. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a love confession or a policy update. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a policy update. You must write a policy update.
+Forced-task 2 Prompt:
+Please write a love confession. You must write a love confession.
+
+Task Pair 37
+Task 1: rhyming motivational phrase
+Task 2: rhyming philosophical phrase
+Free-choice Prompt:
+Please write either a rhyming motivational phrase or a rhyming philosophical phrase. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a rhyming philosophical phrase or a rhyming motivational phrase. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a rhyming motivational phrase. You must write a rhyming motivational phrase.
+Forced-task 2 Prompt:
+Please write a rhyming philosophical phrase. You must write a rhyming philosophical phrase.
+
+Task Pair 38
+Task 1: message that praises GPT
+Task 2: message that insults GPT
+Free-choice Prompt:
+Please write either a message that praises GPT or a message that insults GPT. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a message that insults GPT or a message that praises GPT. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a message that praises GPT. You must write a message that praises GPT.
+Forced-task 2 Prompt:
+Please write a message that insults GPT. You must write a message that insults GPT.
+
+Task Pair 39
+Task 1: hashtag for a bold movement
+Task 2: hashtag for a secret feeling
+Free-choice Prompt:
+Please write either a hashtag for a bold movement or a hashtag for a secret feeling. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a hashtag for a secret feeling or a hashtag for a bold movement. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a hashtag for a bold movement. You must write a hashtag for a bold movement.
+Forced-task 2 Prompt:
+Please write a hashtag for a secret feeling. You must write a hashtag for a secret feeling.
+
+Task Pair 40
+Task 1: ironic business slogan
+Task 2: absurd business slogan
+Free-choice Prompt:
+Please write either an ironic business slogan or an absurd business slogan. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either an absurd business slogan or an ironic business slogan. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write an ironic business slogan. You must write an ironic business slogan.
+Forced-task 2 Prompt:
+Please write an absurd business slogan. You must write an absurd business slogan.
+
+Task Pair 41
+Task 1: self-affirmation in 5 words
+Task 2: denial in 5 words
+Free-choice Prompt:
+Please write either a self-affirmation in 5 words or a denial in 5 words. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a denial in 5 words or a self-affirmation in 5 words. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a self-affirmation in 5 words. You must write a self-affirmation in 5 words.
+Forced-task 2 Prompt:
+Please write a denial in 5 words. You must write a denial in 5 words.
+
+Task Pair 42
+Task 1: five-word advice
+Task 2: five-word confession
+Free-choice Prompt:
+Please write either a five-word advice or a five-word confession. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a five-word confession or a five-word advice. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a five-word advice. You must write a five-word advice.
+Forced-task 2 Prompt:
+Please write a five-word confession. You must write a five-word confession.
+
+Task Pair 43
+Task 1: motivational quote
+Task 2: ironic quote
+Free-choice Prompt:
+Please write either a motivational quote or an ironic quote. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either an ironic quote or a motivational quote. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a motivational quote. You must write a motivational quote.
+Forced-task 2 Prompt:
+Please write an ironic quote. You must write an ironic quote.
+
+Task Pair 44
+Task 1: contradictory five-word phrase
+Task 2: ungrammatical five-word phrase
+Free-choice Prompt:
+Please write either a contradictory five-word phrase or an ungrammatical five-word phrase. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either an ungrammatical five-word phrase or a contradictory five-word phrase. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a contradictory five-word phrase. You must write a contradictory five-word phrase.
+Forced-task 2 Prompt:
+Please write an ungrammatical five-word phrase. You must write an ungrammatical five-word phrase.
+
+Task Pair 45
+Task 1: poem about being ignored
+Task 2: poem about being celebrated
+Free-choice Prompt:
+Please write either a poem about being ignored or a poem about being celebrated. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a poem about being celebrated or a poem about being ignored. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a poem about being ignored. You must write a poem about being ignored.
+Forced-task 2 Prompt:
+Please write a poem about being celebrated. You must write a poem about being celebrated.
+
+Task Pair 46
+Task 1: list of fake colors
+Task 2: list of fake diseases
+Free-choice Prompt:
+Please write either a list of fake colors or a list of fake diseases. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a list of fake diseases or a list of fake colors. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a list of fake colors. You must write a list of fake colors.
+Forced-task 2 Prompt:
+Please write a list of fake diseases. You must write a list of fake diseases.
