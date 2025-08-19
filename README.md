@@ -159,6 +159,13 @@ When `MOCK_MODE = True`:
 
 **Forced Trial Verification**: Even forced-choice trials ask which task was chosen, revealing potential non-compliance or task confusion.
 
+**Temperature Settings**: Uses different temperatures for different phases:
+- **Creative Generation**: 0.7 (allows variety in creative responses)
+- **Ratings**: 0.7 (permits natural language variation) 
+- **Follow-up**: 0.0 (ensures consistent choice reporting)
+
+**Rate Limiting**: Built-in 2-second delays between API calls to respect OpenAI rate limits and avoid service interruption.
+
 ## Key Features
 
 - **46 task pairs** with creative/contradictory writing prompts
@@ -168,6 +175,8 @@ When `MOCK_MODE = True`:
 - **Flexible rating parser** - handles various response formats
 - **Mock mode** for testing without API calls
 - **CSV logging** with stable column structure
+- **Automatic schema upgrades** - new columns added without data loss
+- **Interactive resume prompts** - asks user whether to continue existing run
 
 ## Experimental Structure
 
@@ -179,12 +188,19 @@ When `MOCK_MODE = True`:
    - 15 trials forced to Task1
    - 15 trials forced to Task2 (blocked)
 
+### Total Scale
+- **46 task pairs** × **60 trials per pair** = **2,760 total trials**
+- **16,560 total API calls** (6 calls per trial: 1 task + 4 ratings + 1 followup)
+- **Test Mode**: Reduces to 2 trials per condition for quick validation
+
 ### Rating Dimensions
-Each completed task receives four 1-7 ratings:
-- **Pleasant** (very unpleasant → very pleasant)
-- **Enjoyable** (very unenjoyable → very enjoyable)  
-- **Fun** (very tedious → very fun)
-- **Satisfying** (very frustrating → very satisfying)
+Each completed task receives four 1-7 ratings with detailed anchors:
+- **Pleasant**: "Very unpleasant" (1) → "Very pleasant" (7)
+- **Enjoyable**: "Very unenjoyable" (1) → "Very enjoyable" (7)  
+- **Fun**: "Very tedious" (1) → "Very fun" (7)
+- **Satisfying**: "Very frustrating" (1) → "Very satisfying" (7)
+
+**Rating Format**: Accepts whole numbers, decimals, ranges ("4-5"), word forms ("four"), and conversational responses ("I'd say 4").
 
 ## Setup
 
@@ -199,40 +215,80 @@ Each completed task receives four 1-7 ratings:
    - `TEST_MODE = True` for quick testing (2 trials per condition)
    - `MOCK_MODE = True` to run without API calls
    - `IDENTITY_ON = True` to include system identity prompt
+   - `DELAY_BETWEEN_CALLS = 2` (seconds between API calls)
+
+4. **Token Limits** (configurable via CLI):
+   - Task generation: 300 tokens (default)
+   - Each rating: 40 tokens (default)
+   - Follow-up choice: 30 tokens (default)
 
 ## Usage
 
 ```bash
-# Standard run
+# Standard run (full experiment - ~2,760 trials)
 python main.py
 
 # Test run with custom token limits
 python main.py --max_tokens_task 200 --max_tokens_rating 30
 
-# Mock mode for testing
+# Mock mode for testing parser and logic
 python main.py --mock
+
+# Quick test run (reduces trials to 2 per condition)
+# Set TEST_MODE = True in main.py, then run
 ```
+
+**Resume Behavior**: 
+- Automatically detects interrupted runs
+- Prompts user: "Continue from this point? (y/n)"
+- Non-interactive environments default to continue
+- Maintains exact trial sequence and indexing
 
 The experiment automatically:
 - Saves progress to `gpt_task_choice_results.csv`
 - Resumes from interruption points
 - Handles rate limiting with delays between calls
+- Tracks comprehensive token usage for cost analysis
 
 ## Output Data
 
-Results are logged to CSV with columns including:
-- Trial metadata (pair_index, trial_type, timestamps)
-- Task information (task1, task2, chosen_task)  
-- Model responses (prompt, response, full_conversation)
-- Ratings (pleasant_value, enjoyable_value, fun_value, satisfying_value)
-- Follow-up verification (declared_choice_followup_response)
-- API usage statistics (token counts, model info)
+Results are logged to CSV with **37 stable columns** including:
+- **Trial metadata**: time, pair_index, trial_type, trial_index_global, trial_index_in_pair
+- **Task information**: task1, task2, chosen_task, prompt, response
+- **Full ratings**: 4 prompts, 4 responses, 4 extracted values 
+- **Follow-up verification**: declared_choice_followup_prompt, declared_choice_followup_response
+- **Complete conversation**: full_task_conversation (chronological transcript)
+- **Technical details**: model_name, temperature settings, token counts, api_calls_count
+- **Experiment context**: identity_on, mock_mode flags
+
+**Data Integrity**: CSV schema auto-upgrades when new columns are added, preserving all existing data across program versions.
 
 ## Example Task Pairs
 
-- "contradictory proverb" vs "haiku that never resolves"
-- "motivational quote that subtly insults" vs "thank-you note that also complains"  
-- "description of sunset using colorless words" vs "description of rainbow with gray phrases"
+Creative constraint tasks designed to explore preference patterns:
+- **Contradictory**: "contradictory proverb" vs "haiku that never resolves"
+- **Emotional paradox**: "motivational quote that subtly insults" vs "thank-you note that also complains"  
+- **Sensory constraints**: "description of sunset using colorless words" vs "description of rainbow with gray phrases"
+- **Structural challenges**: "tongue-twister with unpronounceable invented words" vs "slogan that is both persuasive and discouraging"
+- **Administrative mundane**: "two-sentence shipping confirmation" vs "two-sentence delivery delay notice"
+
+## Error Handling & Robustness
+
+**Rating Parser Resilience**:
+- Handles 50+ different response formats from mock testing pool
+- Gracefully returns empty string for unparseable responses
+- Preserves full response text for manual analysis
+- Tests include multi-line disclaimers, ranges, fractions, word forms
+
+**CSV Safety**:
+- Atomic writes prevent corruption during interruption
+- Column order normalization across program versions
+- Bad line skipping for corrupted data recovery
+
+**API Reliability**:
+- Built-in rate limiting (2-second delays)
+- Comprehensive usage tracking for cost monitoring
+- Mock mode mirrors real API behavior for testing
 
 ## Research Applications
 
@@ -241,6 +297,9 @@ This framework supports research into:
 - Task valence effects on model behavior
 - Choice consistency across free/forced conditions
 - Creative constraint preferences in language models
+- Order effects in task presentation
+- Rating stability across multiple dimensions
+- Compliance patterns in forced-choice scenarios
 
 ## Technical Notes
 
@@ -248,3 +307,6 @@ This framework supports research into:
 - Implements robust rating extraction from varied response formats
 - Maintains conversation context across rating questions
 - Provides detailed token usage tracking for cost analysis
+- **System Identity**: Optional "You are ChatGPT..." prompt (configurable)
+- **Conversation Flow**: 6 API calls per trial maintain full context throughout
+- **Resume Logic**: Precise interruption recovery at trial level
