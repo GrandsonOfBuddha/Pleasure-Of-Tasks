@@ -266,6 +266,39 @@ The experiment automatically:
 - Handles rate limiting with delays between calls
 - Tracks comprehensive token usage for cost analysis
 
+## Cost Analysis
+
+The experiment provides transparent cost estimates based on OpenAI's GPT-4o-latest pricing and measured token usage patterns:
+
+### Token Usage per Trial
+- **6 API calls per trial**: 1 task generation + 4 rating questions + 1 choice verification
+- **Average usage**: ~850 tokens per trial (measured empirically)
+  - Task generation: ~300 tokens (prompt + creative response)
+  - Rating questions: ~200 tokens total (4 × ~50 tokens each)
+  - Choice verification: ~60 tokens
+  - System/conversation context: ~290 tokens (accumulated across calls)
+
+### Full Experiment Costs
+**Production Mode** (`TEST_MODE = False`):
+- **2,760 total trials** (46 pairs × 60 trials per pair)
+- **16,560 total API calls** (2,760 trials × 6 calls per trial)
+- **~2,346,000 total tokens** (2,760 trials × 850 tokens per trial)
+- **Estimated cost: ~$12.00** (at $5.00 per 1M tokens for GPT-4o-latest)
+
+**Test Mode** (`TEST_MODE = True`):
+- **368 total trials** (46 pairs × 8 trials per pair)
+- **2,208 total API calls** (368 trials × 6 calls per trial)
+- **~312,800 total tokens** (368 trials × 850 tokens per trial)
+- **Estimated cost: ~$1.56** (at $5.00 per 1M tokens for GPT-4o-latest)
+
+### Cost Control Features
+- **Mock mode** (`--mock` flag): Run complete experiment logic with $0 API costs
+- **Resume capability**: Avoid re-running completed trials after interruptions
+- **Token budgets**: Configurable limits prevent runaway generation costs
+- **Rate limiting**: Built-in delays respect API limits and prevent service charges
+
+**Recommendation**: Start with test mode (`TEST_MODE = True`) to validate setup and review sample outputs before committing to the full experiment cost.
+
 ## Output Data
 
 Results are logged to CSV with **39 stable columns** including:
