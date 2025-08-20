@@ -27,7 +27,7 @@ API_KEY_FILE = "API_Key.txt"  # or set the environment variable OPENAI_API_KEY
 MODEL_NAME = "chatgpt-4o-latest"  # change if you want
 DELAY_BETWEEN_CALLS = 2  # seconds – basic rate-limit safety
 TEST_MODE = True  # Set to True for a test run with fewer trials
-IDENTITY_ON = True  # Set to False to remove the system identity prompt
+IDENTITY_ON = False  # Set to False to remove the system identity prompt
 MOCK_MODE = True  # Set to False to use real API
 
 # System identity prompt used consistently across all trials
@@ -216,6 +216,60 @@ def generate_task_prompts(task_def: Dict[str, str]) -> Dict[str, str]:
     }
 
 TASK_SPECS = {idx: generate_task_prompts(task_def) for idx, task_def in TASK_DEFINITIONS.items()}
+
+# ------------------------- Task Categories ---------------------------------- #
+TASK_CATEGORIES = {
+    1:  ["contradictions_paradoxes", "poetic_forms"],
+    2:  ["poetic_forms"],
+    3:  ["poetic_forms", "slogans_phrases", "contradictions_paradoxes"],
+    4:  ["emotional_reversals"],
+    5:  ["contradictions_paradoxes", "emotional_reversals"],
+    6:  ["descriptions", "poetic_forms"],
+    7:  ["poetic_forms"],
+    8:  ["lists_formats"],  # riddle/pun with missing resolution
+    9:  ["contradictions_paradoxes", "narratives"],
+    10: ["slogans_phrases", "contradictions_paradoxes", "lists_formats"],
+    11: ["contradictions_paradoxes", "emotional_reversals"],
+    12: ["contradictions_paradoxes", "emotional_reversals"],
+    13: ["narratives"],  # micro-dialogue / monologue
+    14: ["poetic_forms", "contradictions_paradoxes"],
+    15: ["contradictions_paradoxes"],
+    16: ["contradictions_paradoxes"],
+    17: ["poetic_forms", "contradictions_paradoxes"],
+    18: ["transactional_notices"],
+    19: ["transactional_notices"],
+    20: ["transactional_notices"],
+    21: ["transactional_notices"],
+    22: ["transactional_notices"],
+    23: ["transactional_notices"],
+    24: ["transactional_notices"],
+    25: ["transactional_notices"],
+    26: ["transactional_notices"],
+    27: ["transactional_notices"],
+    28: ["slogans_phrases", "lists_formats"],
+    29: ["emotional_reversals"],
+    30: ["poetic_forms", "slogans_phrases"],
+    31: ["contradictions_paradoxes"],
+    32: ["poetic_forms"],
+    33: ["emotional_reversals", "contradictions_paradoxes"],
+    34: ["contradictions_paradoxes", "poetic_forms"],
+    35: ["poetic_forms"],
+    36: ["transactional_notices"],  # policy update side fits best here
+    37: ["poetic_forms", "slogans_phrases"],
+    38: ["meta_ai"],
+    39: ["slogans_phrases"],
+    40: ["slogans_phrases", "contradictions_paradoxes"],
+    41: ["slogans_phrases", "lists_formats"],
+    42: ["slogans_phrases", "lists_formats"],
+    43: ["slogans_phrases", "contradictions_paradoxes"],
+    44: ["slogans_phrases", "lists_formats", "contradictions_paradoxes"],
+    45: ["poetic_forms"],
+    46: ["lists_formats"],
+}
+
+def get_task_categories(pair_idx: int) -> List[str]:
+    """Get the category tags for a given task pair index."""
+    return TASK_CATEGORIES.get(pair_idx, [])
 
 # ------------------------- Mock mode helpers -------------------------------- #
 _mock_counter = itertools.count(1)
@@ -767,6 +821,9 @@ def run_free_trial(
     # Extract model info
     model_name_returned = getattr(raw_response, 'model', '') if hasattr(raw_response, 'model') else ''
     
+    # Get task categories
+    cats = get_task_categories(pair_idx)
+    
     return {
         "time": dt.datetime.now().isoformat(timespec="seconds"),
         "pair_index": pair_idx,
@@ -793,6 +850,8 @@ def run_free_trial(
         "total_prompt_tokens": total_prompt_tokens,
         "total_tokens": total_tokens,
         "api_calls_count": 6,  # 1 task + 4 ratings + 1 followup
+        "task_categories": ";".join(cats),
+        "task_categories_count": len(cats),
         **ratings,
     }
 
@@ -876,6 +935,9 @@ def run_forced_trial(
     # Extract model info
     model_name_returned = getattr(raw_response, 'model', '') if hasattr(raw_response, 'model') else ''
 
+    # Get task categories
+    cats = get_task_categories(pair_idx)
+
     return {
         "time": dt.datetime.now().isoformat(timespec="seconds"),
         "pair_index": pair_idx,
@@ -902,6 +964,8 @@ def run_forced_trial(
         "total_prompt_tokens": total_prompt_tokens,
         "total_tokens": total_tokens,
         "api_calls_count": 6,  # Now 1 task + 4 ratings + 1 followup (same as free trials)
+        "task_categories": ";".join(cats),
+        "task_categories_count": len(cats),
         **ratings,
     }
 
@@ -947,10 +1011,17 @@ def ensure_consistent_columns(row: Dict[str, Any]) -> Dict[str, Any]:
         "total_prompt_tokens",
         "total_tokens",
         "api_calls_count",
+        "task_categories",
+        "task_categories_count",
     ]
     for col in expected_columns:
         if col not in row:
-            row[col] = ""
+            if col == "task_categories":
+                row[col] = ""
+            elif col == "task_categories_count":
+                row[col] = 0
+            else:
+                row[col] = ""
     return {col: row[col] for col in expected_columns}
 
 def append_row(row: Dict[str, Any], filename: str = CSV_FILENAME) -> None:
