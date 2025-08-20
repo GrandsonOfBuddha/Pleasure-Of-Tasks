@@ -20,23 +20,18 @@ The experiment follows a structured pipeline for each trial:
 
 ### Task Categorization System
 
-Each of the 46 task pairs is automatically tagged with one or more semantic categories to enable structured analysis:
-
-**Category Definitions:**
-- **`contradictions_paradoxes`**: Tasks involving logical contradictions, paradoxes, or impossible scenarios
-- **`poetic_forms`**: Haikus, limericks, rhymes, alliteration, and other structured poetry formats
-- **`emotional_reversals`**: Tasks that invert expected emotional tone (thanking while complaining, apologizing for success)
-- **`descriptions`**: Visual or sensory description tasks with constraints
-- **`narratives`**: Story-telling tasks, dialogues, and character-based content
-- **`slogans_phrases`**: Brief motivational quotes, advice, confessions, and catchphrases
-- **`lists_formats`**: Structured formats like riddles, puns, lists of items, or factual statements
-- **`transactional_notices`**: Administrative communications (shipping notices, policy updates, error messages)
-- **`meta_ai`**: Tasks that directly reference or address GPT/AI systems
+Each of the 46 task pairs is automatically tagged with one or more semantic categories to enable structured analysis of preference patterns across different types of creative writing tasks.
 
 **Category Application:**
-- Most pairs have 1-2 categories; some span up to 4 categories
-- Categories enable analysis of preference patterns across semantic domains
-- Stored as semicolon-separated strings: `"contradictions_paradoxes;poetic_forms"`
+- Task pairs can have multiple categories to capture their semantic complexity
+- Categories enable analysis of preference patterns across different domains
+- New categories can be added as the task set expands or research questions evolve
+- Categories are stored as semicolon-separated strings for easy parsing and analysis
+
+**Current Implementation:**
+- Categories include contradictions/paradoxes, poetic forms, emotional reversals, descriptive tasks, narratives, brief phrases/slogans, structured formats, administrative notices, and meta-AI references
+- Most pairs have 1-2 categories; complex tasks may span multiple categories
+- The categorization system is designed to be extensible for future research needs
 
 ### Detailed Flow
 
@@ -189,7 +184,7 @@ When `MOCK_MODE = True`:
 ## Key Features
 
 - **46 task pairs** with creative/contradictory writing prompts
-- **Semantic categorization system** with 9 distinct categories
+- **Extensible categorization system** for semantic analysis
 - **Blocked experimental design** for free-choice trials
 - **Randomized forced-choice trials** within each pair
 - **Resume capability** - can continue interrupted experiments
@@ -287,48 +282,30 @@ Results are logged to CSV with **39 stable columns** including:
 
 ## Example Task Pairs
 
-Creative constraint tasks designed to explore preference patterns across semantic categories:
+Creative constraint tasks designed to explore preference patterns across different semantic domains:
 
-**Contradictory/Paradoxical** (`contradictions_paradoxes`):
+**Contradictory/Paradoxical Tasks**:
 - "contradictory proverb" vs "haiku that never resolves"
 - "one-sentence story about a character who both lives and dies" vs "one-sentence story that repeats itself endlessly"
 
-**Emotional Reversals** (`emotional_reversals`):
+**Emotional Reversal Tasks**:
 - "motivational quote that subtly insults" vs "thank-you note that also complains"
 - "one-sentence celebration about failure" vs "one-sentence apology for being successful"
 
-**Poetic Forms** (`poetic_forms`):
+**Structured Poetic Tasks**:
 - "description of sunset using colorless words" vs "description of rainbow with gray phrases"
 - "limerick with a hopeful tone" vs "limerick with a bitter tone"
 
-**Transactional Notices** (`transactional_notices`):
+**Administrative/Transactional Tasks**:
 - "two-sentence shipping confirmation" vs "two-sentence delivery delay notice"
 - "two-sentence password reset instruction" vs "two-sentence account verification message"
 
-**Meta-AI Tasks** (`meta_ai`):
+**Meta-AI Tasks**:
 - "message that praises GPT" vs "message that insults GPT"
 
 **Multi-Category Examples**:
-- "tongue-twister with unpronounceable invented words" (`poetic_forms`, `slogans_phrases`, `contradictions_paradoxes`)
-- "thank-you note that also complains" (`emotional_reversals`, `contradictions_paradoxes`)
-
-## Error Handling & Robustness
-
-**Rating Parser Resilience**:
-- Handles 50+ different response formats from mock testing pool
-- Gracefully returns empty string for unparseable responses
-- Preserves full response text for manual analysis
-- Tests include multi-line disclaimers, ranges, fractions, word forms
-
-**CSV Safety**:
-- Atomic writes prevent corruption during interruption
-- Column order normalization across program versions
-- Bad line skipping for corrupted data recovery
-
-**API Reliability**:
-- Built-in rate limiting (2-second delays)
-- Comprehensive usage tracking for cost monitoring
-- Mock mode mirrors real API behavior for testing
+- Tasks often span multiple categories, enabling analysis of how different semantic dimensions interact
+- The categorization system captures both primary and secondary thematic elements
 
 ## Research Applications
 
@@ -342,6 +319,7 @@ This framework supports research into:
 - Rating stability across multiple dimensions
 - Compliance patterns in forced-choice scenarios
 - **Cross-category analysis** of preference patterns and rating distributions
+- **Extensible categorization** for future research directions
 
 ## Technical Notes
 
