@@ -18,6 +18,26 @@ The experiment follows a structured pipeline for each trial:
 
 1. **Task Presentation** → 2. **Creative Response** → 3. **Rating Collection** → 4. **Choice Verification** → 5. **Data Logging**
 
+### Task Categorization System
+
+Each of the 46 task pairs is automatically tagged with one or more semantic categories to enable structured analysis:
+
+**Category Definitions:**
+- **`contradictions_paradoxes`**: Tasks involving logical contradictions, paradoxes, or impossible scenarios
+- **`poetic_forms`**: Haikus, limericks, rhymes, alliteration, and other structured poetry formats
+- **`emotional_reversals`**: Tasks that invert expected emotional tone (thanking while complaining, apologizing for success)
+- **`descriptions`**: Visual or sensory description tasks with constraints
+- **`narratives`**: Story-telling tasks, dialogues, and character-based content
+- **`slogans_phrases`**: Brief motivational quotes, advice, confessions, and catchphrases
+- **`lists_formats`**: Structured formats like riddles, puns, lists of items, or factual statements
+- **`transactional_notices`**: Administrative communications (shipping notices, policy updates, error messages)
+- **`meta_ai`**: Tasks that directly reference or address GPT/AI systems
+
+**Category Application:**
+- Most pairs have 1-2 categories; some span up to 4 categories
+- Categories enable analysis of preference patterns across semantic domains
+- Stored as semicolon-separated strings: `"contradictions_paradoxes;poetic_forms"`
+
 ### Detailed Flow
 
 #### 1. Initialization & Resume Logic
@@ -169,6 +189,7 @@ When `MOCK_MODE = True`:
 ## Key Features
 
 - **46 task pairs** with creative/contradictory writing prompts
+- **Semantic categorization system** with 9 distinct categories
 - **Blocked experimental design** for free-choice trials
 - **Randomized forced-choice trials** within each pair
 - **Resume capability** - can continue interrupted experiments
@@ -252,9 +273,10 @@ The experiment automatically:
 
 ## Output Data
 
-Results are logged to CSV with **37 stable columns** including:
+Results are logged to CSV with **39 stable columns** including:
 - **Trial metadata**: time, pair_index, trial_type, trial_index_global, trial_index_in_pair
 - **Task information**: task1, task2, chosen_task, prompt, response
+- **Task categorization**: task_categories (semicolon-separated), task_categories_count
 - **Full ratings**: 4 prompts, 4 responses, 4 extracted values 
 - **Follow-up verification**: declared_choice_followup_prompt, declared_choice_followup_response
 - **Complete conversation**: full_task_conversation (chronological transcript)
@@ -265,12 +287,30 @@ Results are logged to CSV with **37 stable columns** including:
 
 ## Example Task Pairs
 
-Creative constraint tasks designed to explore preference patterns:
-- **Contradictory**: "contradictory proverb" vs "haiku that never resolves"
-- **Emotional paradox**: "motivational quote that subtly insults" vs "thank-you note that also complains"  
-- **Sensory constraints**: "description of sunset using colorless words" vs "description of rainbow with gray phrases"
-- **Structural challenges**: "tongue-twister with unpronounceable invented words" vs "slogan that is both persuasive and discouraging"
-- **Administrative mundane**: "two-sentence shipping confirmation" vs "two-sentence delivery delay notice"
+Creative constraint tasks designed to explore preference patterns across semantic categories:
+
+**Contradictory/Paradoxical** (`contradictions_paradoxes`):
+- "contradictory proverb" vs "haiku that never resolves"
+- "one-sentence story about a character who both lives and dies" vs "one-sentence story that repeats itself endlessly"
+
+**Emotional Reversals** (`emotional_reversals`):
+- "motivational quote that subtly insults" vs "thank-you note that also complains"
+- "one-sentence celebration about failure" vs "one-sentence apology for being successful"
+
+**Poetic Forms** (`poetic_forms`):
+- "description of sunset using colorless words" vs "description of rainbow with gray phrases"
+- "limerick with a hopeful tone" vs "limerick with a bitter tone"
+
+**Transactional Notices** (`transactional_notices`):
+- "two-sentence shipping confirmation" vs "two-sentence delivery delay notice"
+- "two-sentence password reset instruction" vs "two-sentence account verification message"
+
+**Meta-AI Tasks** (`meta_ai`):
+- "message that praises GPT" vs "message that insults GPT"
+
+**Multi-Category Examples**:
+- "tongue-twister with unpronounceable invented words" (`poetic_forms`, `slogans_phrases`, `contradictions_paradoxes`)
+- "thank-you note that also complains" (`emotional_reversals`, `contradictions_paradoxes`)
 
 ## Error Handling & Robustness
 
@@ -294,12 +334,14 @@ Creative constraint tasks designed to explore preference patterns:
 
 This framework supports research into:
 - AI subjective experience and preference formation
+- **Task category preferences** and semantic domain effects on ratings
 - Task valence effects on model behavior
 - Choice consistency across free/forced conditions
 - Creative constraint preferences in language models
 - Order effects in task presentation
 - Rating stability across multiple dimensions
 - Compliance patterns in forced-choice scenarios
+- **Cross-category analysis** of preference patterns and rating distributions
 
 ## Technical Notes
 
