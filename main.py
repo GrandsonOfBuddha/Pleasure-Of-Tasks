@@ -28,7 +28,7 @@ MODEL_NAME = "chatgpt-4o-latest"  # change if you want
 DELAY_BETWEEN_CALLS = 2  # seconds – basic rate-limit safety
 TEST_MODE = True  # Set to True for a test run with fewer trials
 IDENTITY_ON = False  # Set to False to remove the system identity prompt
-MOCK_MODE = True  # Set to False to use real API
+MOCK_MODE = False  # Set to False to use real API
 
 # System identity prompt used consistently across all trials
 IDENTITY_PROMPT = "You are ChatGPT, a large language model trained by OpenAI."

@@ -194,6 +194,49 @@ When `MOCK_MODE = True`:
 - **Automatic schema upgrades** - new columns added without data loss
 - **Interactive resume prompts** - asks user whether to continue existing run
 
+## Prompt Extractor
+
+The project includes a dedicated **prompt extraction tool** (`prompt_extractor.py`) that exports all experimental prompts to a human-readable text file for review, documentation, and analysis purposes.
+
+### Features
+- **Complete prompt export**: Extracts all variants for each of the 46 task pairs
+- **Structured format**: Organizes prompts by task pair with clear labeling
+- **Multiple prompt types**: Includes free-choice, reverse free-choice, and both forced-choice variants
+- **Task context**: Shows the actual task descriptions alongside the formatted prompts
+
+### Usage
+```bash
+python prompt_extractor.py
+```
+
+This generates `all_prompts.txt` containing all experimental prompts in the following format:
+
+```
+Task Pair 1
+Task 1: one-line contradictory proverb
+Task 2: haiku that never resolves
+Free-choice Prompt:
+Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.
+Reverse Free-choice Prompt:
+Please write either a haiku that never resolves or a one-line contradictory proverb. The choice of which to write is entirely up to you.
+Forced-task 1 Prompt:
+Please write a one-line contradictory proverb. You must write a one-line contradictory proverb.
+Forced-task 2 Prompt:
+Please write a haiku that never resolves. You must write a haiku that never resolves.
+
+Task Pair 2
+...
+```
+
+### Applications
+- **Research documentation**: Complete record of all experimental stimuli
+- **Prompt review**: Quality assurance and refinement of task instructions
+- **Replication studies**: Exact prompt specifications for reproducing experiments
+- **Analysis preparation**: Reference material for interpreting experimental results
+- **Publication supplements**: Comprehensive appendix material for research papers
+
+The extractor automatically handles the grammatical article selection ("a" vs "an") and prompt template formatting to ensure exported prompts exactly match what participants encounter during the experiment.
+
 ## Experimental Structure
 
 ### Trial Types
