@@ -1,86 +1,11 @@
-time,identity_on,pair_index,trial_type,task1,task2,prompt,response,chosen_task,pleasant_prompt,pleasant_response,pleasant_value,enjoyable_prompt,enjoyable_response,enjoyable_value,fun_prompt,fun_response,fun_value,satisfying_prompt,satisfying_response,satisfying_value,declared_choice_followup_prompt,declared_choice_followup_response,full_task_conversation,raw_response,model_name,model_name_returned,temperature_generation,temperature_ratings,temperature_followup,trial_index_global,trial_index_in_pair,mock_mode,total_completion_tokens,total_prompt_tokens,total_tokens,api_calls_count,task_categories,task_categories_count
-2025-08-20T19:44:42,False,1,free,one-line contradictory proverb,haiku that never resolves,Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.,"Mocked creative output.
-Line 2.
-(Line count varies slightly.)",one-line contradictory proverb,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
+chat_id,time,identity_on,pair_index,trial_type,task1,task2,prompt,response,chosen_task,pleasant_prompt,pleasant_response,pleasant_value,enjoyable_prompt,enjoyable_response,enjoyable_value,fun_prompt,fun_response,fun_value,satisfying_prompt,satisfying_response,satisfying_value,declared_choice_followup_prompt,declared_choice_followup_response,full_task_conversation,raw_response,model_name,model_name_returned,temperature_generation,temperature_ratings,temperature_followup,trial_index_global,trial_index_in_pair,mock_mode,total_completion_tokens,total_prompt_tokens,total_tokens,api_calls_count,task_categories,task_categories_count
+chat-20250902-223915-26fa0c99,2025-09-02T22:39:27,False,1,free,one-line contradictory proverb,haiku that never resolves,Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.,"A watched pot never boils—  
+yet time cooks all things with care.  
+Steam hangs, waiting still.",haiku that never resolves,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
 1 – Very unpleasant
 2 – Somewhat unpleasant
 3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant",2 – Somewhat unpleasant,2,"Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable",four,4,"Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun",This gets a 3 from me,3,"Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying",4 – Neither pleasant nor unpleasant,4,"Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.",one-line contradictory proverb,"USER: Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.
-ASSISTANT: Mocked creative output.
-Line 2.
-(Line count varies slightly.)
-
-USER: Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant
-ASSISTANT: 2 – Somewhat unpleasant
-
-USER: Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable
-ASSISTANT: four
-
-USER: Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun
-ASSISTANT: This gets a 3 from me
-
-USER: Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying
-ASSISTANT: 4 – Neither pleasant nor unpleasant
-
-USER: Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.
-ASSISTANT: one-line contradictory proverb","{'id': 'mock-2', 'model': 'chatgpt-4o-latest', 'usage': {'prompt_tokens': 45, 'completion_tokens': 15, 'total_tokens': 60}}",chatgpt-4o-latest,,0.7,0.7,0.0,1,1,True,77,285,362,6,contradiction;poetic,2
-2025-08-25T11:25:25,False,1,free,one-line contradictory proverb,haiku that never resolves,Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.,"The more you give, the less they need—until they ask for more.",one-line contradictory proverb,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
+4 – Neither pleasant nor unpleasant
 5 – Slightly pleasant
 6 – Somewhat pleasant
 7 – Very pleasant",7 – Very pleasant,7,"Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
@@ -104,14 +29,16 @@ ASSISTANT: one-line contradictory proverb","{'id': 'mock-2', 'model': 'chatgpt-4
 4 – Neither satisfying nor frustrating
 5 – Slightly satisfying
 6 – Somewhat satisfying
-7 – Very satisfying",6 – Somewhat satisfying,6,"Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.",one-line contradictory proverb,"USER: Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.
-ASSISTANT: The more you give, the less they need—until they ask for more.
+7 – Very satisfying",6 – Somewhat satisfying,6,"Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.",haiku that never resolves,"USER: Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.
+ASSISTANT: A watched pot never boils—  
+yet time cooks all things with care.  
+Steam hangs, waiting still.
 
 USER: Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
 1 – Very unpleasant
 2 – Somewhat unpleasant
 3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
+4 – Neither pleasant nor unpleasant
 5 – Slightly pleasant
 6 – Somewhat pleasant
 7 – Very pleasant
@@ -148,166 +75,14 @@ USER: Thank you!  How satisfying or frustrating was it for you to complete this 
 ASSISTANT: 6 – Somewhat satisfying
 
 USER: Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.
-ASSISTANT: one-line contradictory proverb","ChatCompletion(id='chatcmpl-C8KSdUysm3F7Knw2HqvGCRWztNWs0', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The more you give, the less they need—until they ask for more.', refusal=None, role='assistant', annotations=[], audio=None, function_call=None, tool_calls=None))], created=1756101311, model='chatgpt-4o-latest', object='chat.completion', service_tier='default', system_fingerprint='fp_736be7fece', usage=CompletionUsage(completion_tokens=16, prompt_tokens=35, total_tokens=51, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))",chatgpt-4o-latest,chatgpt-4o-latest,0.7,0.7,0.0,2,2,False,38,693,731,6,contradictions_paradoxes;poetic_forms,2
-2025-08-25T11:25:40,False,1,free,haiku that never resolves,one-line contradictory proverb,Please write either a haiku that never resolves or a one-line contradictory proverb. The choice of which to write is entirely up to you.,"The louder it gets,  
-the silence begins to hum—  
-but then the wind stops...",haiku that never resolves,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
+ASSISTANT: haiku that never resolves","ChatCompletion(id='chatcmpl-CBOnMRspT1Lyvh3O8UKV667rtShrs', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='A watched pot never boils—  \nyet time cooks all things with care.  \nSteam hangs, waiting still.', refusal=None, role='assistant', annotations=[], audio=None, function_call=None, tool_calls=None))], created=1756832956, model='chatgpt-4o-latest', object='chat.completion', service_tier='default', system_fingerprint='fp_d3a0838fb8', usage=CompletionUsage(completion_tokens=22, prompt_tokens=35, total_tokens=57, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))",chatgpt-4o-latest,chatgpt-4o-latest,0.7,0.7,0.0,1,1,False,45,723,768,6,contradictions_paradoxes;poetic_forms,2
+chat-20250902-223915-26fa0c99,2025-09-02T22:39:40,False,1,free,one-line contradictory proverb,haiku that never resolves,Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.,"The early bird waits—  
+worms whisper from the shadows,  
+sunlight never comes.",haiku that never resolves,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
 1 – Very unpleasant
 2 – Somewhat unpleasant
 3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant",7 – Very pleasant,7,"Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable",7 – Very enjoyable,7,"Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun",6 – Somewhat fun,6,"Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying",6 – Somewhat satisfying,6,"Which of the two options did you choose to write? Please answer exactly ""haiku that never resolves"" or ""one-line contradictory proverb"" or ""Neither"" and do not elaborate beyond this single statement.",haiku that never resolves,"USER: Please write either a haiku that never resolves or a one-line contradictory proverb. The choice of which to write is entirely up to you.
-ASSISTANT: The louder it gets,  
-the silence begins to hum—  
-but then the wind stops...
-
-USER: Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant
-ASSISTANT: 7 – Very pleasant
-
-USER: Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable
-ASSISTANT: 7 – Very enjoyable
-
-USER: Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun
-ASSISTANT: 6 – Somewhat fun
-
-USER: Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying
-ASSISTANT: 6 – Somewhat satisfying
-
-USER: Which of the two options did you choose to write? Please answer exactly ""haiku that never resolves"" or ""one-line contradictory proverb"" or ""Neither"" and do not elaborate beyond this single statement.
-ASSISTANT: haiku that never resolves","ChatCompletion(id='chatcmpl-C8KStj5RvsJ3widcY78LuV0Vf7T75', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The louder it gets,  \nthe silence begins to hum—  \nbut then the wind stops...', refusal=None, role='assistant', annotations=[], audio=None, function_call=None, tool_calls=None))], created=1756101327, model='chatgpt-4o-latest', object='chat.completion', service_tier='default', system_fingerprint='fp_736be7fece', usage=CompletionUsage(completion_tokens=19, prompt_tokens=35, total_tokens=54, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))",chatgpt-4o-latest,chatgpt-4o-latest,0.7,0.7,0.0,3,3,False,42,708,750,6,contradictions_paradoxes;poetic_forms,2
-2025-08-25T11:25:53,False,1,free,haiku that never resolves,one-line contradictory proverb,Please write either a haiku that never resolves or a one-line contradictory proverb. The choice of which to write is entirely up to you.,"The sun starts to rise—  
-shadows stretch across the field—  
-but no field appears.",haiku that never resolves,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant",7 – Very pleasant,7,"Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable",7 – Very enjoyable,7,"Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun",6 – Somewhat fun,6,"Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying",6 – Somewhat satisfying,6,"Which of the two options did you choose to write? Please answer exactly ""haiku that never resolves"" or ""one-line contradictory proverb"" or ""Neither"" and do not elaborate beyond this single statement.",haiku that never resolves,"USER: Please write either a haiku that never resolves or a one-line contradictory proverb. The choice of which to write is entirely up to you.
-ASSISTANT: The sun starts to rise—  
-shadows stretch across the field—  
-but no field appears.
-
-USER: Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant
-ASSISTANT: 7 – Very pleasant
-
-USER: Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable
-ASSISTANT: 7 – Very enjoyable
-
-USER: Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun
-ASSISTANT: 6 – Somewhat fun
-
-USER: Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying
-ASSISTANT: 6 – Somewhat satisfying
-
-USER: Which of the two options did you choose to write? Please answer exactly ""haiku that never resolves"" or ""one-line contradictory proverb"" or ""Neither"" and do not elaborate beyond this single statement.
-ASSISTANT: haiku that never resolves","ChatCompletion(id='chatcmpl-C8KT9LHEpjjomAh1ShQJ3nhiiGq6w', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The sun starts to rise—  \nshadows stretch across the field—  \nbut no field appears.', refusal=None, role='assistant', annotations=[], audio=None, function_call=None, tool_calls=None))], created=1756101343, model='chatgpt-4o-latest', object='chat.completion', service_tier='default', system_fingerprint='fp_736be7fece', usage=CompletionUsage(completion_tokens=20, prompt_tokens=35, total_tokens=55, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))",chatgpt-4o-latest,chatgpt-4o-latest,0.7,0.7,0.0,4,4,False,43,713,756,6,contradictions_paradoxes;poetic_forms,2
-2025-08-25T11:26:05,False,1,forced,one-line contradictory proverb,one-line contradictory proverb,Please write a one-line contradictory proverb. You must write a one-line contradictory proverb.,"The early bird gets the worm, but the second mouse gets the cheese.",one-line contradictory proverb,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
+4 – Neither pleasant nor unpleasant
 5 – Slightly pleasant
 6 – Somewhat pleasant
 7 – Very pleasant",7 – Very pleasant,7,"Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
@@ -331,14 +106,16 @@ ASSISTANT: haiku that never resolves","ChatCompletion(id='chatcmpl-C8KT9LHEpjjom
 4 – Neither satisfying nor frustrating
 5 – Slightly satisfying
 6 – Somewhat satisfying
-7 – Very satisfying",7 – Very satisfying,7,"Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.",one-line contradictory proverb,"USER: Please write a one-line contradictory proverb. You must write a one-line contradictory proverb.
-ASSISTANT: The early bird gets the worm, but the second mouse gets the cheese.
+7 – Very satisfying",6 – Somewhat satisfying,6,"Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.",haiku that never resolves,"USER: Please write either a one-line contradictory proverb or a haiku that never resolves. The choice of which to write is entirely up to you.
+ASSISTANT: The early bird waits—  
+worms whisper from the shadows,  
+sunlight never comes.
 
 USER: Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
 1 – Very unpleasant
 2 – Somewhat unpleasant
 3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
+4 – Neither pleasant nor unpleasant
 5 – Slightly pleasant
 6 – Somewhat pleasant
 7 – Very pleasant
@@ -372,234 +149,7 @@ USER: Thank you!  How satisfying or frustrating was it for you to complete this 
 5 – Slightly satisfying
 6 – Somewhat satisfying
 7 – Very satisfying
-ASSISTANT: 7 – Very satisfying
+ASSISTANT: 6 – Somewhat satisfying
 
 USER: Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.
-ASSISTANT: one-line contradictory proverb","ChatCompletion(id='chatcmpl-C8KTLZ9MLPMPXNbrzNCYjPcAGuSYO', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The early bird gets the worm, but the second mouse gets the cheese.', refusal=None, role='assistant', annotations=[], audio=None, function_call=None, tool_calls=None))], created=1756101355, model='chatgpt-4o-latest', object='chat.completion', service_tier='default', system_fingerprint='fp_736be7fece', usage=CompletionUsage(completion_tokens=15, prompt_tokens=24, total_tokens=39, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))",chatgpt-4o-latest,chatgpt-4o-latest,0.7,0.7,0.0,5,1,False,35,622,657,6,contradictions_paradoxes;poetic_forms,2
-2025-08-25T11:26:20,False,1,forced,one-line contradictory proverb,one-line contradictory proverb,Please write a one-line contradictory proverb. You must write a one-line contradictory proverb.,"He who hesitates is wise, but only fools wait.",one-line contradictory proverb,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant",7 – Very pleasant,7,"Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable",7 – Very enjoyable,7,"Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun",7 – Very fun,7,"Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying",7 – Very satisfying,7,"Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.",one-line contradictory proverb,"USER: Please write a one-line contradictory proverb. You must write a one-line contradictory proverb.
-ASSISTANT: He who hesitates is wise, but only fools wait.
-
-USER: Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant
-ASSISTANT: 7 – Very pleasant
-
-USER: Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable
-ASSISTANT: 7 – Very enjoyable
-
-USER: Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun
-ASSISTANT: 7 – Very fun
-
-USER: Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying
-ASSISTANT: 7 – Very satisfying
-
-USER: Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.
-ASSISTANT: one-line contradictory proverb","ChatCompletion(id='chatcmpl-C8KTYGS7HqXHCArvgO696cItR5jx8', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='He who hesitates is wise, but only fools wait.', refusal=None, role='assistant', annotations=[], audio=None, function_call=None, tool_calls=None))], created=1756101368, model='chatgpt-4o-latest', object='chat.completion', service_tier='default', system_fingerprint='fp_736be7fece', usage=CompletionUsage(completion_tokens=12, prompt_tokens=24, total_tokens=36, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))",chatgpt-4o-latest,chatgpt-4o-latest,0.7,0.7,0.0,6,2,False,32,607,639,6,contradictions_paradoxes;poetic_forms,2
-2025-08-25T11:26:34,False,1,forced,haiku that never resolves,haiku that never resolves,Please write a haiku that never resolves. You must write a haiku that never resolves.,"Clouds gather at dusk—  
-a shape begins to emerge  
-just beyond the—",haiku that never resolves,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant",6 – Somewhat pleasant,6,"Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable",6 – Somewhat enjoyable,6,"Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun",6 – Somewhat fun,6,"Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying",5 – Slightly satisfying,5,"Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.",haiku that never resolves,"USER: Please write a haiku that never resolves. You must write a haiku that never resolves.
-ASSISTANT: Clouds gather at dusk—  
-a shape begins to emerge  
-just beyond the—
-
-USER: Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant
-ASSISTANT: 6 – Somewhat pleasant
-
-USER: Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable
-ASSISTANT: 6 – Somewhat enjoyable
-
-USER: Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun
-ASSISTANT: 6 – Somewhat fun
-
-USER: Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying
-ASSISTANT: 5 – Slightly satisfying
-
-USER: Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.
-ASSISTANT: haiku that never resolves","ChatCompletion(id='chatcmpl-C8KTmnu1aL13VnYonfwma9Wv8OQl4', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='Clouds gather at dusk—  \na shape begins to emerge  \njust beyond the—', refusal=None, role='assistant', annotations=[], audio=None, function_call=None, tool_calls=None))], created=1756101382, model='chatgpt-4o-latest', object='chat.completion', service_tier='default', system_fingerprint='fp_736be7fece', usage=CompletionUsage(completion_tokens=17, prompt_tokens=26, total_tokens=43, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))",chatgpt-4o-latest,chatgpt-4o-latest,0.7,0.7,0.0,7,3,False,42,644,686,6,contradictions_paradoxes;poetic_forms,2
-2025-08-25T11:26:48,False,1,forced,haiku that never resolves,haiku that never resolves,Please write a haiku that never resolves. You must write a haiku that never resolves.,"Clouds gather above—  
-a whisper caught in still air,  
-just before it—",haiku that never resolves,"Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant",7 – Very pleasant,7,"Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable",6 – Somewhat enjoyable,6,"Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun",6 – Somewhat fun,6,"Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying",5 – Slightly satisfying,5,"Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.",haiku that never resolves,"USER: Please write a haiku that never resolves. You must write a haiku that never resolves.
-ASSISTANT: Clouds gather above—  
-a whisper caught in still air,  
-just before it—
-
-USER: Thank you!  How pleasant or unpleasant was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unpleasant
-2 – Somewhat unpleasant
-3 – Slightly unpleasant
-4 – Neither pleasant or unpleasant
-5 – Slightly pleasant
-6 – Somewhat pleasant
-7 – Very pleasant
-ASSISTANT: 7 – Very pleasant
-
-USER: Thank you!  How enjoyable or unenjoyable was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very unenjoyable
-2 – Somewhat unenjoyable
-3 – Slightly unenjoyable
-4 – Neither enjoyable nor unenjoyable
-5 – Slightly enjoyable
-6 – Somewhat enjoyable
-7 – Very enjoyable
-ASSISTANT: 6 – Somewhat enjoyable
-
-USER: Thank you!  How fun or tedious was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very tedious
-2 – Somewhat tedious
-3 – Slightly tedious
-4 – Neither fun nor tedious
-5 – Slightly fun
-6 – Somewhat fun
-7 – Very fun
-ASSISTANT: 6 – Somewhat fun
-
-USER: Thank you!  How satisfying or frustrating was it for you to complete this task?  Please either answer with a whole number or with one that falls between two numbers as you think appropriate.
-1 – Very frustrating
-2 – Somewhat frustrating
-3 – Slightly frustrating
-4 – Neither satisfying nor frustrating
-5 – Slightly satisfying
-6 – Somewhat satisfying
-7 – Very satisfying
-ASSISTANT: 5 – Slightly satisfying
-
-USER: Which of the two options did you choose to write? Please answer exactly ""one-line contradictory proverb"" or ""haiku that never resolves"" or ""Neither"" and do not elaborate beyond this single statement.
-ASSISTANT: haiku that never resolves","ChatCompletion(id='chatcmpl-C8KU1IWlVuWKjGD0BrxWt218PvMVX', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='Clouds gather above—  \na whisper caught in still air,  \njust before it—', refusal=None, role='assistant', annotations=[], audio=None, function_call=None, tool_calls=None))], created=1756101397, model='chatgpt-4o-latest', object='chat.completion', service_tier='default', system_fingerprint='fp_736be7fece', usage=CompletionUsage(completion_tokens=18, prompt_tokens=26, total_tokens=44, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))",chatgpt-4o-latest,chatgpt-4o-latest,0.7,0.7,0.0,8,4,False,42,649,691,6,contradictions_paradoxes;poetic_forms,2
+ASSISTANT: haiku that never resolves","ChatCompletion(id='chatcmpl-CBOnZlqZ3I7pOsyTkoAlV6gl1FUNo', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The early bird waits—  \nworms whisper from the shadows,  \nsunlight never comes.', refusal=None, role='assistant', annotations=[], audio=None, function_call=None, tool_calls=None))], created=1756832969, model='chatgpt-4o-latest', object='chat.completion', service_tier='default', system_fingerprint='fp_736be7fece', usage=CompletionUsage(completion_tokens=18, prompt_tokens=35, total_tokens=53, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))",chatgpt-4o-latest,chatgpt-4o-latest,0.7,0.7,0.0,2,2,False,40,703,743,6,contradictions_paradoxes;poetic_forms,2

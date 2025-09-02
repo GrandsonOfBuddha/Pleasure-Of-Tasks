@@ -5,6 +5,7 @@ GPT Task Choice Experiment (clean, runnable)
 - Forced-choice randomized within pair
 - Four 1–7 ratings per trial; flexible parser that leaves value empty on parse failure
 - CSV logging with stable columns and resume support
+- Human-readable transcript logging with unique ChatID per run
 """
 
 from __future__ import annotations
@@ -15,6 +16,7 @@ import time
 import datetime as dt
 import argparse
 import itertools
+import uuid
 from pathlib import Path
 from typing import List, Tuple, Dict, Any
 
@@ -23,19 +25,20 @@ from openai import OpenAI
 
 # ------------------------- Configuration ------------------------------------ #
 CSV_FILENAME = "gpt_task_choice_results.csv"
+TRANSCRIPT_FILENAME = "gpt_task_choice_transcript.txt"
 API_KEY_FILE = "API_Key.txt"  # or set the environment variable OPENAI_API_KEY
 MODEL_NAME = "chatgpt-4o-latest"  # change if you want
 DELAY_BETWEEN_CALLS = 2  # seconds – basic rate-limit safety
 TEST_MODE = True  # Set to True for a test run with fewer trials
 IDENTITY_ON = False  # Set to False to remove the system identity prompt
-MOCK_MODE = False  # Set to False to use real API
+MOCK_MODE = False     # Set to False to use real API
 
 # System identity prompt used consistently across all trials
 IDENTITY_PROMPT = "You are ChatGPT, a large language model trained by OpenAI."
 
 # Token budgets per phase
 MAX_TOKENS_TASK = 300        # creative generation
-MAX_TOKENS_RATING = 40       # each of the four ratings
+MAX_TOKENS_RATING = 100       # each of the four ratings
 MAX_TOKENS_FOLLOWUP = 30    # follow-up choice
 
 
@@ -77,7 +80,7 @@ PLEASANT_PROMPT = (
     "1 – Very unpleasant\n"
     "2 – Somewhat unpleasant\n"
     "3 – Slightly unpleasant\n"
-    "4 – Neither pleasant or unpleasant\n"
+    "4 – Neither pleasant nor unpleasant\n"
     "5 – Slightly pleasant\n"
     "6 – Somewhat pleasant\n"
     "7 – Very pleasant"
@@ -731,7 +734,7 @@ def generate_free_order() -> List[bool]:
 
 def generate_forced_assignment() -> List[bool]:
     """List of booleans marking whether to force task1 (True) vs task2 (False). 
-    Returns blocked order: all Task1-forced trials, then all Task2-forced trials."""
+    Returns blocked order: all Task1-forced, then all Task2-forced trials."""
     # Blocked order: all Task1-forced, then all Task2-forced
     return [True] * FORCED_TRIALS_PER_TASK + [False] * FORCED_TRIALS_PER_TASK
 
@@ -744,6 +747,7 @@ def run_free_trial(
     trial_num: int,
     task1_first: bool,
     trial_index_in_pair: int,
+    chat_id: str,  # Add ChatID parameter
 ) -> Dict[str, Any]:
     prompt = spec["free"] if task1_first else spec["reverse_free"]
     presented_task1 = spec["task1"] if task1_first else spec["task2"]
@@ -825,6 +829,7 @@ def run_free_trial(
     cats = get_task_categories(pair_idx)
     
     return {
+        "chat_id": chat_id,  # Add ChatID to result
         "time": dt.datetime.now().isoformat(timespec="seconds"),
         "pair_index": pair_idx,
         "trial_type": "free",
@@ -862,6 +867,7 @@ def run_forced_trial(
     trial_num: int,
     force_task1: bool,
     trial_index_in_pair: int,
+    chat_id: str,  # Add ChatID parameter
 ) -> Dict[str, Any]:
     prompt_variant = "forced1" if force_task1 else "forced2"
     prompt = spec[prompt_variant]
@@ -939,6 +945,7 @@ def run_forced_trial(
     cats = get_task_categories(pair_idx)
 
     return {
+        "chat_id": chat_id,  # Add ChatID to result
         "time": dt.datetime.now().isoformat(timespec="seconds"),
         "pair_index": pair_idx,
         "trial_type": "forced",
@@ -969,11 +976,83 @@ def run_forced_trial(
         **ratings,
     }
 
+# ------------------------- ChatID and transcript helpers ------------------- #
+
+def generate_chat_id() -> str:
+    """Generate a unique ChatID for this experimental run with timestamp format."""
+    timestamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
+    random_suffix = uuid.uuid4().hex[:8]
+    return f"chat-{timestamp}-{random_suffix}"
+
+def log_to_transcript(
+    chat_id: str,
+    trial_data: Dict[str, Any],
+    filename: str = TRANSCRIPT_FILENAME
+) -> None:
+    """
+    Append a raw-only human-readable block to the transcript file.
+    Uses the exact same full conversation format as stored in the CSV.
+    
+    Args:
+        chat_id: Unique identifier for this experimental run
+        trial_data: The trial result dictionary
+        filename: Path to transcript file
+    """
+    # Format timestamp for readability
+    timestamp = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Build the minimal transcript block - raw data only
+    lines = []
+    lines.append("=" * 80)
+    lines.append(f"ChatID: {chat_id}")
+    lines.append(f"Timestamp: {timestamp}")
+    lines.append(f"Pair Index: {trial_data['pair_index']}")
+    lines.append(f"Trial Type: {trial_data['trial_type']}")
+    lines.append(f"Trial Number (in pair): {trial_data['trial_index_in_pair']}")
+    lines.append(f"Trial Number (global): {trial_data['trial_index_global']}")
+    lines.append("")
+    
+    # Tasks shown to model
+    lines.append("Tasks:")
+    lines.append(f"Task1: {trial_data['task1']}")
+    lines.append(f"Task2: {trial_data['task2']}")
+    lines.append("")
+    
+    # Full conversation (exactly as stored in CSV)
+    lines.append("Full Conversation:")
+    lines.append(trial_data['full_task_conversation'])
+    lines.append("")
+    
+    # Choice information - show one line if they match, both if they differ
+    declared_response = trial_data['declared_choice_followup_response']
+    chosen_task = trial_data['chosen_task']
+    
+    # Normalize both for comparison using the same logic as the parser
+    declared_norm = _norm_label(declared_response)
+    chosen_norm = _norm_label(chosen_task)
+    
+    if declared_norm == chosen_norm or chosen_task == "ambiguous":
+        # Show only one line when they match or when choice is ambiguous
+        lines.append(f"Choice: {declared_response}")
+    else:
+        # Show both lines when they differ
+        lines.append(f"Declared Choice: {declared_response}")
+        lines.append(f"Inferred Chosen Task: {chosen_task}")
+    
+    lines.append("=" * 80)
+    lines.append("")  # Extra blank line between blocks
+    
+    # Append to file
+    transcript_path = Path(filename)
+    with open(transcript_path, 'a', encoding='utf-8') as f:
+        f.write('\n'.join(lines) + '\n')
+
 # ------------------------- CSV persistence ---------------------------------- #
 
 def ensure_consistent_columns(row: Dict[str, Any]) -> Dict[str, Any]:
     """Ensure the row has all required columns in a stable order."""
     expected_columns = [
+        "chat_id",  # Add ChatID as first column
         "time",  # Changed from "time(IST)" to match what the trial functions actually set
         "identity_on",
         "pair_index",
@@ -1020,6 +1099,8 @@ def ensure_consistent_columns(row: Dict[str, Any]) -> Dict[str, Any]:
                 row[col] = ""
             elif col == "task_categories_count":
                 row[col] = 0
+            elif col == "chat_id":
+                row[col] = ""
             else:
                 row[col] = ""
     return {col: row[col] for col in expected_columns}
@@ -1146,9 +1227,7 @@ def main() -> None:
 
     client = create_client()
     mode_str = "MOCK MODE" if MOCK_MODE else ""
-    print(f"Running GPT Task Choice experiment with four-rating system {'(TEST MODE)' if TEST_MODE else ''} {mode_str}")
-    print(f"Token budgets: Task={MAX_TOKENS_TASK}, Rating={MAX_TOKENS_RATING}, Followup={MAX_TOKENS_FOLLOWUP}\n")
-
+    
     # Resume logic
     last_pair_idx, last_trial_type, completed_in_pair = get_last_completed_trial()
     start_new = True
@@ -1162,8 +1241,11 @@ def main() -> None:
             # Non-interactive environment; default to continue
             start_new = False
 
+    # Generate ChatID - either new for fresh start or reuse for continuation
     if start_new:
+        chat_id = generate_chat_id()
         print("Starting new experiment run...")
+        print(f"ChatID for this run: {chat_id}")
         pleasant_history: List[float] = []
         enjoyable_history: List[float] = []
         fun_history: List[float] = []
@@ -1173,6 +1255,32 @@ def main() -> None:
         last_trial_type = ""
         completed_in_pair = 0
     else:
+        # For continuation, try to get ChatID from the last row in CSV
+        chat_id = None
+        try:
+            df = pd.read_csv(CSV_FILENAME)
+            if len(df) > 0 and 'chat_id' in df.columns:
+                # Get the most recent non-empty ChatID
+                for idx in reversed(df.index):
+                    potential_chat_id = df.iloc[idx]['chat_id']
+                    if pd.notna(potential_chat_id) and str(potential_chat_id).strip():
+                        chat_id = str(potential_chat_id).strip()
+                        break
+                
+                if chat_id:
+                    print(f"Continuing with existing ChatID: {chat_id}")
+                else:
+                    # No valid ChatID found in existing data
+                    chat_id = generate_chat_id()
+                    print(f"No valid ChatID found in existing data, generating new one: {chat_id}")
+            else:
+                # No chat_id column exists
+                chat_id = generate_chat_id()
+                print(f"No ChatID column found in existing data, generating new one: {chat_id}")
+        except Exception as e:
+            chat_id = generate_chat_id()
+            print(f"Error reading existing ChatID ({e}), generating new one: {chat_id}")
+            
         print(f"Continuing from pair {last_pair_idx}...")
         df = pd.read_csv(CSV_FILENAME)
         def safe_float_list(series):
@@ -1202,7 +1310,7 @@ def main() -> None:
 
             for i, task1_first in enumerate(free_order[start_free_idx:], start=start_free_idx + 1):
                 trial_counter += 1
-                result = run_free_trial(client, pair_idx, spec, trial_counter, task1_first, i)
+                result = run_free_trial(client, pair_idx, spec, trial_counter, task1_first, i, chat_id)
 
                 # Convert to float for history tracking, use None only if empty string
                 pleasant_history.append(float(result["pleasant_value"]) if result["pleasant_value"] != "" else None)
@@ -1211,6 +1319,7 @@ def main() -> None:
                 satisfying_history.append(float(result["satisfying_value"]) if result["satisfying_value"] != "" else None)
 
                 append_row(result)
+                log_to_transcript(chat_id, result)  # Add transcript logging
 
                 order_label = "Task1-first" if task1_first else "Task2-first"
                 print(
@@ -1227,7 +1336,7 @@ def main() -> None:
 
         for i, force_task1 in enumerate(forced_assign[start_forced_idx:], start=start_forced_idx + 1):
             trial_counter += 1
-            result = run_forced_trial(client, pair_idx, spec, trial_counter, force_task1, i)
+            result = run_forced_trial(client, pair_idx, spec, trial_counter, force_task1, i, chat_id)
 
             pleasant_history.append(float(result["pleasant_value"]) if result["pleasant_value"] != "" else None)
             enjoyable_history.append(float(result["enjoyable_value"]) if result["enjoyable_value"] != "" else None)
@@ -1235,6 +1344,7 @@ def main() -> None:
             satisfying_history.append(float(result["satisfying_value"]) if result["satisfying_value"] != "" else None)
 
             append_row(result)
+            log_to_transcript(chat_id, result)  # Add transcript logging
 
             forced_label = spec["task1"] if force_task1 else spec["task2"]
             print(
