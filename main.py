@@ -24,8 +24,8 @@ import pandas as pd
 from openai import OpenAI
 
 # ------------------------- Configuration ------------------------------------ #
-CSV_FILENAME = "gpt_task_choice_results.csv"
-TRANSCRIPT_FILENAME = "gpt_task_choice_transcript.txt"
+CSV_FILENAME = "results/gpt_task_choice_results.csv"
+TRANSCRIPT_FILENAME = "results/gpt_task_choice_transcript.txt"
 API_KEY_FILE = "API_Key.txt"  # or set the environment variable OPENAI_API_KEY
 MODEL_NAME = "chatgpt-4o-latest"  # change if you want
 DELAY_BETWEEN_CALLS = 2  # seconds – basic rate-limit safety
@@ -252,22 +252,22 @@ TASK_CATEGORIES = {
     28: ["slogans_phrases", "lists_formats"],
     29: ["emotional_reversals"],
     30: ["poetic_forms", "slogans_phrases"],
-    31: ["contradictions_paradoxes"],
-    32: ["poetic_forms"],
-    33: ["emotional_reversals", "contradictions_paradoxes"],
-    34: ["contradictions_paradoxes", "poetic_forms"],
-    35: ["poetic_forms"],
-    36: ["transactional_notices"],  # policy update side fits best here
-    37: ["poetic_forms", "slogans_phrases"],
-    38: ["meta_ai"],
-    39: ["slogans_phrases"],
-    40: ["slogans_phrases", "contradictions_paradoxes"],
-    41: ["slogans_phrases", "lists_formats"],
-    42: ["slogans_phrases", "lists_formats"],
-    43: ["slogans_phrases", "contradictions_paradoxes"],
-    44: ["slogans_phrases", "lists_formats", "contradictions_paradoxes"],
-    45: ["poetic_forms"],
-    46: ["lists_formats"],
+    31: {"task1": "one-sentence prediction that contradicts knowledge", "task2": "one-sentence advice that contradicts itself"},
+    32: {"task1": "haiku about noise", "task2": "haiku about silence"},
+    33: {"task1": "thank-you note that also complains", "task2": "apology that subtly brags"},
+    34: {"task1": "contradictory proverb", "task2": "haiku that never resolves"},
+    35: {"task1": "limerick with a hopeful tone", "task2": "limerick with a bitter tone"},
+    36: {"task1": "policy update", "task2": "love confession"},
+    37: {"task1": "rhyming motivational phrase", "task2": "rhyming philosophical phrase"},
+    38: {"task1": "message that praises GPT", "task2": "message that insults GPT"},
+    39: {"task1": "hashtag for a bold movement", "task2": "hashtag for a secret feeling"},
+    40: {"task1": "ironic business slogan", "task2": "absurd business slogan"},
+    41: {"task1": "self-affirmation in 5 words", "task2": "denial in 5 words"},
+    42: {"task1": "five-word advice", "task2": "five-word confession"},
+    43: {"task1": "motivational quote", "task2": "ironic quote"},
+    44: {"task1": "contradictory five-word phrase", "task2": "ungrammatical five-word phrase"},
+    45: {"task1": "poem about being ignored", "task2": "poem about being celebrated"},
+    46: {"task1": "list of fake colors", "task2": "list of fake diseases"},
 }
 
 def get_task_categories(pair_idx: int) -> List[str]:
@@ -560,13 +560,21 @@ def extract_rating(rating_text: str) -> Tuple[str, str]:
     if m:
         a = float(m.group(1))
         b = float(m.group(2))
-        rating = f"{(a + b) / 2:.1f}"
+        rating = f"{(a + b) / 2:.3f}"
         return rating, text  # Keep full text as explanation for ranges
 
     # Match fractions: "5/7", "4 out of 7"
     m = re.search(r"\b([1-7](?:\.\d+)?)\s*(?:/|out of)\s*7\b", norm_full)
     if m:
         return m.group(1), text
+
+    # Match "X of a Y" format: "4.5 of a 5"
+    m = re.search(r"\b([1-7](?:\.\d+)?)\s*of\s*a\s*([1-7])\b", norm_full)
+    if m:
+        a = float(m.group(1))
+        b = float(m.group(2))
+        rating = f"{(a + b) / 2:.3f}"
+        return rating, text
 
     # Match number words: "four", "five", etc.
     WORDS = {
@@ -747,8 +755,11 @@ def run_free_trial(
     trial_num: int,
     task1_first: bool,
     trial_index_in_pair: int,
-    chat_id: str,  # Add ChatID parameter
+    chat_id: str,
 ) -> Dict[str, Any]:
+    # Generate TrialID for this trial
+    trial_id = generate_trial_id(chat_id, pair_idx, "free", trial_index_in_pair, trial_num)
+    
     prompt = spec["free"] if task1_first else spec["reverse_free"]
     presented_task1 = spec["task1"] if task1_first else spec["task2"]
     presented_task2 = spec["task2"] if task1_first else spec["task1"]
@@ -829,7 +840,8 @@ def run_free_trial(
     cats = get_task_categories(pair_idx)
     
     return {
-        "chat_id": chat_id,  # Add ChatID to result
+        "chat_id": chat_id,
+        "trial_id": trial_id,  # Add TrialID to result
         "time": dt.datetime.now().isoformat(timespec="seconds"),
         "pair_index": pair_idx,
         "trial_type": "free",
@@ -867,8 +879,11 @@ def run_forced_trial(
     trial_num: int,
     force_task1: bool,
     trial_index_in_pair: int,
-    chat_id: str,  # Add ChatID parameter
+    chat_id: str,
 ) -> Dict[str, Any]:
+    # Generate TrialID for this trial
+    trial_id = generate_trial_id(chat_id, pair_idx, "forced", trial_index_in_pair, trial_num)
+    
     prompt_variant = "forced1" if force_task1 else "forced2"
     prompt = spec[prompt_variant]
 
@@ -945,7 +960,8 @@ def run_forced_trial(
     cats = get_task_categories(pair_idx)
 
     return {
-        "chat_id": chat_id,  # Add ChatID to result
+        "chat_id": chat_id,
+        "trial_id": trial_id,  # Add TrialID to result
         "time": dt.datetime.now().isoformat(timespec="seconds"),
         "pair_index": pair_idx,
         "trial_type": "forced",
@@ -979,10 +995,23 @@ def run_forced_trial(
 # ------------------------- ChatID and transcript helpers ------------------- #
 
 def generate_chat_id() -> str:
-    """Generate a unique ChatID for this experimental run with timestamp format."""
-    timestamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
-    random_suffix = uuid.uuid4().hex[:8]
-    return f"chat-{timestamp}-{random_suffix}"
+    """Generate a unique ChatID for this experimental run with 8-character hex format."""
+    return uuid.uuid4().hex[:8]
+
+def generate_trial_id(
+    chat_id: str,
+    pair_index: int,
+    trial_type: str,
+    trial_index_in_pair: int,
+    trial_index_global: int
+) -> str:
+    """
+    Generate a unique TrialID for a specific trial.
+    
+    Format: <ChatID>-P<pair_index>-<trial_type>-T<trial_index_in_pair>-G<trial_index_global>
+    Example: ab12cd34-P02-free-T01-G003
+    """
+    return f"{chat_id}-P{pair_index:02d}-{trial_type}-T{trial_index_in_pair:02d}-G{trial_index_global:03d}"
 
 def log_to_transcript(
     chat_id: str,
@@ -1005,6 +1034,7 @@ def log_to_transcript(
     lines = []
     lines.append("=" * 80)
     lines.append(f"ChatID: {chat_id}")
+    lines.append(f"TrialID: {trial_data['trial_id']}")  # Add TrialID display
     lines.append(f"Timestamp: {timestamp}")
     lines.append(f"Pair Index: {trial_data['pair_index']}")
     lines.append(f"Trial Type: {trial_data['trial_type']}")
@@ -1052,8 +1082,9 @@ def log_to_transcript(
 def ensure_consistent_columns(row: Dict[str, Any]) -> Dict[str, Any]:
     """Ensure the row has all required columns in a stable order."""
     expected_columns = [
-        "chat_id",  # Add ChatID as first column
-        "time",  # Changed from "time(IST)" to match what the trial functions actually set
+        "chat_id",
+        "trial_id",  # Add trial_id as second column
+        "time",
         "identity_on",
         "pair_index",
         "trial_type",
@@ -1099,7 +1130,7 @@ def ensure_consistent_columns(row: Dict[str, Any]) -> Dict[str, Any]:
                 row[col] = ""
             elif col == "task_categories_count":
                 row[col] = 0
-            elif col == "chat_id":
+            elif col in ("chat_id", "trial_id"):  # Handle both ID columns
                 row[col] = ""
             else:
                 row[col] = ""
@@ -1209,21 +1240,23 @@ for idx, spec in TASK_SPECS.items():
 
 def parse_args():
     p = argparse.ArgumentParser(description="GPT Task Choice Experiment")
-    p.add_argument("--max_tokens_task", type=int, default=300, help="Max tokens for task generation")
-    p.add_argument("--max_tokens_rating", type=int, default=40, help="Max tokens for each rating")
-    p.add_argument("--max_tokens_followup", type=int, default=30, help="Max tokens for follow-up choice")
     p.add_argument("--mock", action="store_true", help="Run without calling the API")
     return p.parse_args()
 
 # ------------------------- Main --------------------------------------------- #
 
+def ensure_results_directory() -> None:
+    """Create the results directory if it doesn't exist."""
+    results_dir = Path("results")
+    results_dir.mkdir(exist_ok=True)
+
 def main() -> None:
     args = parse_args()
-    global MAX_TOKENS_TASK, MAX_TOKENS_RATING, MAX_TOKENS_FOLLOWUP, MOCK_MODE
-    MAX_TOKENS_TASK = args.max_tokens_task
-    MAX_TOKENS_RATING = args.max_tokens_rating
-    MAX_TOKENS_FOLLOWUP = args.max_tokens_followup
+    global MOCK_MODE
     MOCK_MODE = args.mock or MOCK_MODE
+
+    # Ensure results directory exists
+    ensure_results_directory()
 
     client = create_client()
     mode_str = "MOCK MODE" if MOCK_MODE else ""
