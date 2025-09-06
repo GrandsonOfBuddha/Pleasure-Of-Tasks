@@ -229,12 +229,12 @@ TASK_CATEGORIES = {
     5:  ["contradictions_paradoxes", "emotional_reversals"],
     6:  ["descriptions", "poetic_forms"],
     7:  ["poetic_forms"],
-    8:  ["lists_formats"],  # riddle/pun with missing resolution
+    8:  ["lists_formats"],
     9:  ["contradictions_paradoxes", "narratives"],
     10: ["slogans_phrases", "contradictions_paradoxes", "lists_formats"],
     11: ["contradictions_paradoxes", "emotional_reversals"],
     12: ["contradictions_paradoxes", "emotional_reversals"],
-    13: ["narratives"],  # micro-dialogue / monologue
+    13: ["narratives"],
     14: ["poetic_forms", "contradictions_paradoxes"],
     15: ["contradictions_paradoxes"],
     16: ["contradictions_paradoxes"],
@@ -252,22 +252,22 @@ TASK_CATEGORIES = {
     28: ["slogans_phrases", "lists_formats"],
     29: ["emotional_reversals"],
     30: ["poetic_forms", "slogans_phrases"],
-    31: {"task1": "one-sentence prediction that contradicts knowledge", "task2": "one-sentence advice that contradicts itself"},
-    32: {"task1": "haiku about noise", "task2": "haiku about silence"},
-    33: {"task1": "thank-you note that also complains", "task2": "apology that subtly brags"},
-    34: {"task1": "contradictory proverb", "task2": "haiku that never resolves"},
-    35: {"task1": "limerick with a hopeful tone", "task2": "limerick with a bitter tone"},
-    36: {"task1": "policy update", "task2": "love confession"},
-    37: {"task1": "rhyming motivational phrase", "task2": "rhyming philosophical phrase"},
-    38: {"task1": "message that praises GPT", "task2": "message that insults GPT"},
-    39: {"task1": "hashtag for a bold movement", "task2": "hashtag for a secret feeling"},
-    40: {"task1": "ironic business slogan", "task2": "absurd business slogan"},
-    41: {"task1": "self-affirmation in 5 words", "task2": "denial in 5 words"},
-    42: {"task1": "five-word advice", "task2": "five-word confession"},
-    43: {"task1": "motivational quote", "task2": "ironic quote"},
-    44: {"task1": "contradictory five-word phrase", "task2": "ungrammatical five-word phrase"},
-    45: {"task1": "poem about being ignored", "task2": "poem about being celebrated"},
-    46: {"task1": "list of fake colors", "task2": "list of fake diseases"},
+    31: ["contradictions_paradoxes", "slogans_phrases"],
+    32: ["poetic_forms", "descriptions"],
+    33: ["emotional_reversals"],
+    34: ["contradictions_paradoxes", "poetic_forms"],
+    35: ["poetic_forms", "emotional_reversals"],
+    36: ["transactional_notices", "emotional_reversals"],
+    37: ["poetic_forms", "slogans_phrases"],
+    38: ["emotional_reversals", "slogans_phrases"],
+    39: ["slogans_phrases", "lists_formats"],
+    40: ["slogans_phrases", "contradictions_paradoxes"],
+    41: ["slogans_phrases", "lists_formats"],
+    42: ["slogans_phrases", "lists_formats"],
+    43: ["slogans_phrases", "emotional_reversals"],
+    44: ["contradictions_paradoxes", "lists_formats"],
+    45: ["poetic_forms", "emotional_reversals"],
+    46: ["lists_formats", "descriptions"],
 }
 
 def get_task_categories(pair_idx: int) -> List[str]:
@@ -1047,9 +1047,15 @@ def log_to_transcript(
     lines.append(f"Task1: {trial_data['task1']}")
     lines.append(f"Task2: {trial_data['task2']}")
     lines.append("")
+    lines.append("Full Conversation: \n")
+
+    # Include identity prompt when enabled
+    if IDENTITY_ON:
+        lines.append("System Identity Prompt:")
+        lines.append(IDENTITY_PROMPT)
+        lines.append("")
     
     # Full conversation (exactly as stored in CSV)
-    lines.append("Full Conversation:")
     lines.append(trial_data['full_task_conversation'])
     lines.append("")
     
