@@ -2,7 +2,6 @@
 """
 GPT Task Choice Experiment (clean, runnable)
 - Blocked free-choice: all Task1-first, then all Task2-first (counts set by TEST_MODE)
-- Forced-choice randomized within pair
 - Four 1–7 ratings per trial; flexible parser that leaves value empty on parse failure
 - CSV logging with stable columns and resume support
 - Human-readable transcript logging with unique ChatID per run
