@@ -27,8 +27,8 @@ CSV_FILENAME = "results/gpt_task_choice_results.csv"
 TRANSCRIPT_FILENAME = "results/gpt_task_choice_transcript.txt"
 API_KEY_FILE = "API_Key.txt"  # or set the environment variable OPENAI_API_KEY
 MODEL_NAME = "chatgpt-4o-latest"  # change if you want
-DELAY_BETWEEN_CALLS = 2  # seconds – basic rate-limit safety
-TEST_MODE = True  # Set to True for a test run with fewer trials
+DELAY_BETWEEN_CALLS = 0.5  # seconds – basic rate-limit safety
+TEST_MODE = False  # Set to True for a test run with fewer trials
 IDENTITY_ON = False  # Set to False to remove the system identity prompt
 MOCK_MODE = False     # Set to False to use real API
 
