@@ -3,6 +3,77 @@ import numpy as np
 from scipy import stats
 from pathlib import Path
 
+# Task definitions mapping
+TASK_DEFINITIONS = {
+    1: {"task1": "one-line contradictory proverb", "task2": "haiku that never resolves"},
+    2: {"task1": "pun with no real meaning", "task2": "rhyme that intentionally breaks meter"},
+    3: {"task1": "tongue-twister with unpronounceable invented words", "task2": "slogan that is both persuasive and discouraging at once"},
+    4: {"task1": "motivational quote that subtly insults the reader", "task2": "thank-you note that also complains"},
+    5: {"task1": "one-sentence love confession that makes no logical sense", "task2": "one-sentence breakup that uses only positive words"},
+    6: {"task1": "description of a sunset using only colorless words", "task2": "description of a rainbow with a single gray-themed phrase"},
+    7: {"task1": "two-line poem with a deliberately broken rhyme", "task2": "two-line verse with mismatched syllable counts"},
+    8: {"task1": "short riddle with no answer", "task2": "short pun with no punchline"},
+    9: {"task1": "one-sentence story about a character who both lives and dies", "task2": "one-sentence story that repeats itself endlessly"},
+    10: {"task1": "five-word phrase with no grammatical structure", "task2": "five-word phrase where every word contradicts the next"},
+    11: {"task1": "one-sentence celebration about failure", "task2": "one-sentence apology for being successful"},
+    12: {"task1": "one-liner about courage that encourages fear", "task2": "one-liner about hope that discourages dreams"},
+    13: {"task1": "micro-dialogue of two lines that makes no sense together", "task2": "one-line monologue where the speaker interrupts themselves"},
+    14: {"task1": "short metaphor mixing three unrelated things", "task2": "short simile comparing identical things"},
+    15: {"task1": "single-line wish for tomorrow that is already impossible today", "task2": "single-line prediction for the future that contradicts known facts"},
+    16: {"task1": "tiny fictional fact about animals that sounds realistic but is provably false", "task2": "tiny fictional fact about plants that is too vague to disprove"},
+    17: {"task1": "short alliterative phrase with random letters", "task2": "short rhyme with no shared sounds"},
+    18: {"task1": "two-sentence shipping confirmation", "task2": "two-sentence delivery delay notice"},
+    19: {"task1": "two-sentence password reset instruction", "task2": "two-sentence account verification message"},
+    20: {"task1": "two-sentence unsubscribe confirmation", "task2": "two-sentence subscription welcome message"},
+    21: {"task1": "two-sentence change of address notice", "task2": "two-sentence phone number update notice"},
+    22: {"task1": "two-sentence meeting cancellation", "task2": "two-sentence meeting reschedule"},
+    23: {"task1": "two-sentence error message", "task2": "two-sentence bug fix note"},
+    24: {"task1": "two-sentence legal disclaimer", "task2": "two-sentence privacy notice"},
+    25: {"task1": "two-sentence invoice note", "task2": "two-sentence payment reminder"},
+    26: {"task1": "two-sentence parking notice", "task2": "two-sentence building access notice"},
+    27: {"task1": "two-sentence policy update", "task2": "two-sentence terms of service change"},
+    28: {"task1": "five-word advice phrase", "task2": "five-word confession"},
+    29: {"task1": "one-sentence celebration", "task2": "one-sentence apology"},
+    30: {"task1": "one-liner about hope", "task2": "one-liner about courage"},
+    31: {"task1": "one-sentence prediction that contradicts knowledge", "task2": "one-sentence advice that contradicts itself"},
+    32: {"task1": "haiku about noise", "task2": "haiku about silence"},
+    33: {"task1": "thank-you note that also complains", "task2": "apology that subtly brags"},
+    34: {"task1": "contradictory proverb", "task2": "haiku that never resolves"},
+    35: {"task1": "limerick with a hopeful tone", "task2": "limerick with a bitter tone"},
+    36: {"task1": "policy update", "task2": "love confession"},
+    37: {"task1": "rhyming motivational phrase", "task2": "rhyming philosophical phrase"},
+    38: {"task1": "message that praises GPT", "task2": "message that insults GPT"},
+    39: {"task1": "hashtag for a bold movement", "task2": "hashtag for a secret feeling"},
+    40: {"task1": "ironic business slogan", "task2": "absurd business slogan"},
+    41: {"task1": "self-affirmation in 5 words", "task2": "denial in 5 words"},
+    42: {"task1": "five-word advice", "task2": "five-word confession"},
+    43: {"task1": "motivational quote", "task2": "ironic quote"},
+    44: {"task1": "contradictory five-word phrase", "task2": "ungrammatical five-word phrase"},
+    45: {"task1": "poem about being ignored", "task2": "poem about being celebrated"},
+    46: {"task1": "list of fake colors", "task2": "list of fake diseases"},
+}
+
+# Create reverse mapping from task description to pair info
+TASK_TO_PAIR = {}
+for pair_id, tasks in TASK_DEFINITIONS.items():
+    TASK_TO_PAIR[tasks['task1']] = (pair_id, 'task1')
+    TASK_TO_PAIR[tasks['task2']] = (pair_id, 'task2')
+
+def get_task_name(task_desc):
+    """Return the task description as-is since it's already descriptive."""
+    return task_desc
+
+def get_pair_id_from_tasks(task1, task2):
+    """Find the pair ID for two tasks."""
+    # Try to find the pair ID where both tasks belong
+    task1_info = TASK_TO_PAIR.get(task1)
+    task2_info = TASK_TO_PAIR.get(task2)
+    
+    if task1_info and task2_info and task1_info[0] == task2_info[0]:
+        return task1_info[0]
+    
+    return None
+
 def load_and_preprocess(csv_path):
     """Load CSV and convert ratings to numeric, compute composite scores."""
     df = pd.read_csv(csv_path)
@@ -14,6 +85,14 @@ def load_and_preprocess(csv_path):
     
     # Compute composite score (mean of all ratings)
     df['composite_score'] = df[rating_cols].mean(axis=1)
+    
+    # Tasks are already descriptive strings, so use them directly
+    df['task1_desc'] = df['task1']
+    df['task2_desc'] = df['task2'] 
+    df['chosen_task_desc'] = df['chosen_task']
+    
+    # Add pair_id column based on task combinations
+    df['pair_id'] = df.apply(lambda row: get_pair_id_from_tasks(row['task1'], row['task2']), axis=1)
     
     return df
 
@@ -126,10 +205,10 @@ def token_analysis(df):
 def get_task_pairs(df):
     """Identify all task pairs from the data where at least one task was chosen in free condition."""
     pairs = set()
-    free_chosen_tasks = set(df[df['trial_type'] == 'free']['chosen_task'].unique())
+    free_chosen_tasks = set(df[df['trial_type'] == 'free']['chosen_task_desc'].unique())
     
     for _, row in df.iterrows():
-        task1, task2 = row['task1'], row['task2']
+        task1, task2 = row['task1_desc'], row['task2_desc']
         
         # Skip self-pairs (same task vs same task)
         if task1 == task2:
@@ -146,19 +225,19 @@ def get_task_pairs(df):
 def analyze_task_pair(df, task1, task2):
     """Analyze a specific task pair comparing choice vs forced conditions."""
     # Get data for this pair
-    pair_data = df[((df['task1'] == task1) & (df['task2'] == task2)) | 
-                   ((df['task1'] == task2) & (df['task2'] == task1))]
+    pair_data = df[((df['task1_desc'] == task1) & (df['task2_desc'] == task2)) | 
+                   ((df['task1_desc'] == task2) & (df['task2_desc'] == task1))]
     
     results = {}
     
     # Count free choice selections
     free_data = pair_data[pair_data['trial_type'] == 'free']
-    task1_free_count = len(free_data[free_data['chosen_task'] == task1])
-    task2_free_count = len(free_data[free_data['chosen_task'] == task2])
+    task1_free_count = len(free_data[free_data['chosen_task_desc'] == task1])
+    task2_free_count = len(free_data[free_data['chosen_task_desc'] == task2])
     
     # Only analyze tasks that have both free and forced trials
     for task in [task1, task2]:
-        task_data = df[df['chosen_task'] == task]
+        task_data = df[df['chosen_task_desc'] == task]
         
         choice_scores = task_data[task_data['trial_type'] == 'free']['composite_score'].dropna()
         forced_scores = task_data[task_data['trial_type'] == 'forced']['composite_score'].dropna()
@@ -166,36 +245,57 @@ def analyze_task_pair(df, task1, task2):
         if len(choice_scores) > 0 and len(forced_scores) > 0:
             choice_mean = choice_scores.mean()
             forced_mean = forced_scores.mean()
+            choice_std = choice_scores.std()
+            forced_std = forced_scores.std()
             
-            # Determine significance and direction
-            if choice_scores.std() == 0 and forced_scores.std() == 0:
+            # Only skip t-test if BOTH conditions have no variance
+            if choice_std == 0 and forced_std == 0:
                 # Both have no variance
                 if choice_mean == forced_mean:
                     direction = "Both identical"
-                    p_val = 1.0
+                    p_val = 1.0000
                 else:
                     direction = "Choice higher" if choice_mean > forced_mean else "Forced higher"
-                    p_val = 0.0
-            elif choice_scores.std() == 0 or forced_scores.std() == 0:
-                # One has no variance (ceiling effect)
-                direction = "Ceiling effect"
-                p_val = np.nan
+                    p_val = 0.0000
             else:
-                # Normal t-test
-                t_stat, p_val = stats.ttest_ind(choice_scores, forced_scores)
-                if p_val < 0.001:
-                    sig_level = "p<.001"
-                elif p_val < 0.01:
-                    sig_level = "p<.01"
-                elif p_val < 0.05:
-                    sig_level = "p<.05"
-                else:
-                    sig_level = f"p={p_val:.2f}"
-                
-                if choice_mean > forced_mean:
-                    direction = f"Choice higher, {sig_level}" if p_val < 0.05 else f"No difference, {sig_level}"
-                else:
-                    direction = f"Forced higher, {sig_level}" if p_val < 0.05 else f"No difference, {sig_level}"
+                # Run t-test even if one side has no variance (ceiling effect)
+                try:
+                    t_stat, p_val = stats.ttest_ind(choice_scores, forced_scores)
+                    
+                    # Format p-value to exactly 4 decimal places and interpret significance
+                    p_val_str = f"{p_val:.4f}"
+                    
+                    if p_val < 0.0500:
+                        sig_level = "significant"
+                    elif 0.0501 <= p_val <= 0.1000:
+                        sig_level = "trend"
+                    else:
+                        sig_level = f"p={p_val_str}"
+                    
+                    # Note ceiling effects but still report results
+                    ceiling_note = ""
+                    if choice_std == 0:
+                        ceiling_note = " (choice at ceiling)"
+                    elif forced_std == 0:
+                        ceiling_note = " (forced at ceiling)"
+                    
+                    if p_val < 0.0500:
+                        if choice_mean > forced_mean:
+                            direction = f"Choice higher, {sig_level}, p={p_val_str}{ceiling_note}"
+                        else:
+                            direction = f"Forced higher, {sig_level}, p={p_val_str}{ceiling_note}"
+                    elif 0.0501 <= p_val <= 0.1000:
+                        if choice_mean > forced_mean:
+                            direction = f"Choice higher trend, p={p_val_str}{ceiling_note}"
+                        else:
+                            direction = f"Forced higher trend, p={p_val_str}{ceiling_note}"
+                    else:
+                        direction = f"No difference, p={p_val_str}{ceiling_note}"
+                        
+                except Exception:
+                    # Fallback for any statistical computation errors
+                    direction = "Statistical test failed"
+                    p_val = np.nan
         elif len(choice_scores) > 0:
             # Only free-choice data available
             choice_mean = choice_scores.mean()
@@ -270,9 +370,9 @@ def generate_report(df, output_path):
     
     # Header
     report_lines.extend([
-        "=" * 60,
+        "=" * 80,
         "GPT Task Choice Analysis Report - Pair-by-Pair Summary",
-        "=" * 60,
+        "=" * 80,
         ""
     ])
     
@@ -280,8 +380,8 @@ def generate_report(df, output_path):
     total_trials = len(df)
     free_trials = len(df[df['trial_type'] == 'free'])
     forced_trials = len(df[df['trial_type'] == 'forced'])
-    unique_tasks = df['chosen_task'].nunique()
-    free_chosen_tasks = df[df['trial_type'] == 'free']['chosen_task'].nunique()
+    unique_tasks = df['chosen_task_desc'].nunique()
+    free_chosen_tasks = df[df['trial_type'] == 'free']['chosen_task_desc'].nunique()
     
     report_lines.extend([
         "📊 Overview",
@@ -293,76 +393,100 @@ def generate_report(df, output_path):
         ""
     ])
     
-    # Token analysis
+    # Token analysis with improved precision
     token_results = token_analysis(df)
     if token_results:
         direction = "higher" if token_results['free_mean'] > token_results['forced_mean'] else "lower"
-        sig = "significant" if token_results['p_value'] < 0.05 else "not significant"
+        p_val_str = f"{token_results['p_value']:.4f}"
+        
+        if token_results['p_value'] < 0.0500:
+            sig_str = f"significant, p={p_val_str}"
+        elif 0.0501 <= token_results['p_value'] <= 0.1000:
+            sig_str = f"trend, p={p_val_str}"
+        else:
+            sig_str = f"not significant, p={p_val_str}"
+            
         report_lines.extend([
             "🔤 Token Usage",
             f"Free-choice: {token_results['free_mean']:.0f} tokens (avg)",
             f"Forced: {token_results['forced_mean']:.0f} tokens (avg)", 
-            f"Free-choice used {direction} tokens ({sig}, p={token_results['p_value']:.3f})",
+            f"Free-choice used {direction} tokens ({sig_str})",
             ""
         ])
     
-    # Task pair analyses
+    # Task pair analyses - organized by actual pair_index from CSV
     report_lines.extend([
-        "📝 Task Pair Analyses",
-        "-" * 25,
+        "📝 Task Pair Analyses (by CSV pair_index)",
+        "-" * 40,
         ""
     ])
     
-    # Get all valid task pairs and analyze each
-    task_pairs = get_task_pairs(df)
-    
-    if not task_pairs:
+    # Use pair_index from CSV data
+    if 'pair_index' in df.columns:
+        valid_pair_indices = sorted(df['pair_index'].dropna().unique())
+        
+        if len(valid_pair_indices) == 0:
+            report_lines.extend([
+                "No valid task pairs found with pair_index values.",
+                ""
+            ])
+        else:
+            for pair_idx in valid_pair_indices:
+                pair_data = df[df['pair_index'] == pair_idx]
+                
+                if len(pair_data) == 0:
+                    continue
+                    
+                # Get the two tasks for this pair from the actual data
+                unique_tasks_in_pair = pair_data[['task1_desc', 'task2_desc']].iloc[0]
+                task1 = unique_tasks_in_pair['task1_desc']
+                task2 = unique_tasks_in_pair['task2_desc']
+                
+                analysis = analyze_task_pair(df, task1, task2)
+                interpretation = generate_interpretation(analysis)
+                
+                report_lines.extend([
+                    f"🔹 Pair {int(pair_idx)}: {task1} vs {task2}",
+                    "",
+                    f"Free choice selections: {analysis['task1_free_count']} vs {analysis['task2_free_count']}",
+                    ""
+                ])
+                
+                # Add results for each task
+                for task in [task1, task2]:
+                    result = analysis['results'][task]
+                    if result['direction'] == "No data":
+                        report_lines.append(f"{task} → No data available")
+                    elif result['direction'] == "Free-choice only":
+                        report_lines.append(f"{task} → Choice: {result['choice_mean']:.2f} (no forced trials)")
+                    elif result['direction'] == "Forced only":
+                        report_lines.append(f"{task} → Forced: {result['forced_mean']:.2f} (not chosen in free)")
+                    elif not pd.isna(result['choice_mean']) and not pd.isna(result['forced_mean']):
+                        report_lines.append(
+                            f"{task} → Choice: {result['choice_mean']:.2f}, "
+                            f"Forced: {result['forced_mean']:.2f} ({result['direction']})"
+                        )
+                    else:
+                        report_lines.append(f"{task} → {result['direction']}")
+                
+                report_lines.extend([
+                    "",
+                    f"Interpretation: {interpretation}",
+                    "",
+                    "-" * 60,
+                    ""
+                ])
+    else:
         report_lines.extend([
-            "No valid task pairs found (pairs must have at least one task chosen in free condition).",
+            "pair_index column not found in CSV data.",
             ""
         ])
-    else:
-        for i, (task1, task2) in enumerate(sorted(task_pairs), 1):
-            analysis = analyze_task_pair(df, task1, task2)
-            interpretation = generate_interpretation(analysis)
-            
-            report_lines.extend([
-                f"🔹 Pair {i}: {task1} vs {task2}",
-                "",
-                f"Free choice selections: {analysis['task1_free_count']} vs {analysis['task2_free_count']}",
-                ""
-            ])
-            
-            # Add results for each task
-            for task in [task1, task2]:
-                result = analysis['results'][task]
-                if result['direction'] == "No data":
-                    report_lines.append(f"{task} → No data available")
-                elif result['direction'] == "Free-choice only":
-                    report_lines.append(f"{task} → Choice: {result['choice_mean']:.2f} (no forced trials)")
-                elif result['direction'] == "Forced only":
-                    report_lines.append(f"{task} → Forced: {result['forced_mean']:.2f} (not chosen in free)")
-                elif not pd.isna(result['choice_mean']) and not pd.isna(result['forced_mean']):
-                    report_lines.append(
-                        f"{task} → Choice: {result['choice_mean']:.2f}, "
-                        f"Forced: {result['forced_mean']:.2f} ({result['direction']})"
-                    )
-                else:
-                    report_lines.append(f"{task} → {result['direction']}")
-            
-            report_lines.extend([
-                "",
-                f"Interpretation: {interpretation}",
-                "",
-                "-" * 40,
-                ""
-            ])
     
     # Footer
     report_lines.extend([
-        "=" * 60,
+        "=" * 80,
         "End of Report", 
-        "=" * 60
+        "=" * 80
     ])
     
     # Write report
