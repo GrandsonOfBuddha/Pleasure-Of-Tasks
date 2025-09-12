@@ -248,54 +248,46 @@ def analyze_task_pair(df, task1, task2):
             choice_std = choice_scores.std()
             forced_std = forced_scores.std()
             
-            # Only skip t-test if BOTH conditions have no variance
-            if choice_std == 0 and forced_std == 0:
-                # Both have no variance
-                if choice_mean == forced_mean:
-                    direction = "Both identical"
-                    p_val = 1.0000
+            # Always run t-test regardless of ceiling effects
+            try:
+                t_stat, p_val = stats.ttest_ind(choice_scores, forced_scores)
+                
+                # Format p-value to exactly 4 decimal places
+                p_val_str = f"{p_val:.4f}"
+                
+                # Apply consistent significance thresholds
+                if p_val <= 0.0500:
+                    sig_level = "significant"
+                elif 0.0501 <= p_val <= 0.1000:
+                    sig_level = "trend"
                 else:
-                    direction = "Choice higher" if choice_mean > forced_mean else "Forced higher"
-                    p_val = 0.0000
-            else:
-                # Run t-test even if one side has no variance (ceiling effect)
-                try:
-                    t_stat, p_val = stats.ttest_ind(choice_scores, forced_scores)
-                    
-                    # Format p-value to exactly 4 decimal places and interpret significance
-                    p_val_str = f"{p_val:.4f}"
-                    
-                    if p_val < 0.0500:
-                        sig_level = "significant"
-                    elif 0.0501 <= p_val <= 0.1000:
-                        sig_level = "trend"
+                    sig_level = "no difference"
+                
+                # Check for ceiling effects
+                ceiling_note = ""
+                if choice_std == 0:
+                    ceiling_note = " (choice at ceiling)"
+                elif forced_std == 0:
+                    ceiling_note = " (forced at ceiling)"
+                
+                # Generate direction string
+                if p_val <= 0.0500:
+                    if choice_mean > forced_mean:
+                        direction = f"Choice higher, significant, p={p_val_str}{ceiling_note}"
                     else:
-                        sig_level = f"p={p_val_str}"
-                    
-                    # Note ceiling effects but still report results
-                    ceiling_note = ""
-                    if choice_std == 0:
-                        ceiling_note = " (choice at ceiling)"
-                    elif forced_std == 0:
-                        ceiling_note = " (forced at ceiling)"
-                    
-                    if p_val < 0.0500:
-                        if choice_mean > forced_mean:
-                            direction = f"Choice higher, {sig_level}, p={p_val_str}{ceiling_note}"
-                        else:
-                            direction = f"Forced higher, {sig_level}, p={p_val_str}{ceiling_note}"
-                    elif 0.0501 <= p_val <= 0.1000:
-                        if choice_mean > forced_mean:
-                            direction = f"Choice higher trend, p={p_val_str}{ceiling_note}"
-                        else:
-                            direction = f"Forced higher trend, p={p_val_str}{ceiling_note}"
+                        direction = f"Forced higher, significant, p={p_val_str}{ceiling_note}"
+                elif 0.0501 <= p_val <= 0.1000:
+                    if choice_mean > forced_mean:
+                        direction = f"Choice higher, trend, p={p_val_str}{ceiling_note}"
                     else:
-                        direction = f"No difference, p={p_val_str}{ceiling_note}"
-                        
-                except Exception:
-                    # Fallback for any statistical computation errors
-                    direction = "Statistical test failed"
-                    p_val = np.nan
+                        direction = f"Forced higher, trend, p={p_val_str}{ceiling_note}"
+                else:
+                    direction = f"No difference, p={p_val_str}{ceiling_note}"
+                    
+            except Exception:
+                # Fallback for any statistical computation errors
+                direction = "Statistical test failed"
+                p_val = np.nan
         elif len(choice_scores) > 0:
             # Only free-choice data available
             choice_mean = choice_scores.mean()
@@ -338,13 +330,17 @@ def generate_interpretation(pair_analysis):
     task1_dir = pair_analysis['results'][task1]['direction']
     task2_dir = pair_analysis['results'][task2]['direction']
     
-    # Skip pairs where neither task has meaningful choice vs forced comparison
-    valid_comparisons = 0
+    # Count significant choice advantages
     choice_advantages = 0
+    ceiling_effects = 0
+    valid_comparisons = 0
     
     for task, direction in [(task1, task1_dir), (task2, task2_dir)]:
-        if "Choice higher" in direction and "p<" in direction:
+        if "significant" in direction and "Choice higher" in direction:
             choice_advantages += 1
+            valid_comparisons += 1
+        elif "at ceiling" in direction:
+            ceiling_effects += 1
             valid_comparisons += 1
         elif direction not in ["No data", "Free-choice only", "Forced only"]:
             valid_comparisons += 1
@@ -354,13 +350,13 @@ def generate_interpretation(pair_analysis):
     
     # Generate interpretation
     if choice_advantages == 2:
-        return "Both tasks show strong choice advantage - GPT preferred having options for this pair."
+        return "Both tasks show significant choice advantage - GPT preferred having options for this pair."
     elif choice_advantages == 1:
-        preferred_task = task1 if "Choice higher" in task1_dir else task2
-        return f"GPT clearly preferred {preferred_task} when given choice, other task stable across conditions."
-    elif "Ceiling effect" in task1_dir or "Ceiling effect" in task2_dir:
-        ceiling_task = task1 if "Ceiling effect" in task1_dir else task2
-        return f"{ceiling_task} hit rating ceiling, limiting comparison potential."
+        preferred_task = task1 if "Choice higher" in task1_dir and "significant" in task1_dir else task2
+        return f"GPT significantly preferred {preferred_task} when given choice, other task stable across conditions."
+    elif ceiling_effects > 0:
+        ceiling_task = task1 if "at ceiling" in task1_dir else task2
+        return f"Although one condition appears at ceiling, the t-test and effect size calculations were still run as normal since variance exists in the other condition."
     else:
         return "Both tasks showed stable ratings regardless of choice vs forced condition."
 
@@ -373,6 +369,19 @@ def generate_report(df, output_path):
         "=" * 80,
         "GPT Task Choice Analysis Report - Pair-by-Pair Summary",
         "=" * 80,
+        ""
+    ])
+    
+    # Add significance thresholds explanation
+    report_lines.extend([
+        "📋 Significance Thresholds",
+        "p ≤ 0.0500 → Significant",
+        "0.0501 ≤ p ≤ 0.1000 → Trend", 
+        "p > 0.1000 → No difference",
+        "",
+        "📝 Pair Indexing Note",
+        "Pair numbers correspond directly to the pair_index in the CSV. If numbering",
+        "looks out of sequence, that's because we preserved the dataset's original indexing.",
         ""
     ])
     
@@ -399,12 +408,12 @@ def generate_report(df, output_path):
         direction = "higher" if token_results['free_mean'] > token_results['forced_mean'] else "lower"
         p_val_str = f"{token_results['p_value']:.4f}"
         
-        if token_results['p_value'] < 0.0500:
+        if token_results['p_value'] <= 0.0500:
             sig_str = f"significant, p={p_val_str}"
         elif 0.0501 <= token_results['p_value'] <= 0.1000:
             sig_str = f"trend, p={p_val_str}"
         else:
-            sig_str = f"not significant, p={p_val_str}"
+            sig_str = f"no difference, p={p_val_str}"
             
         report_lines.extend([
             "🔤 Token Usage",
