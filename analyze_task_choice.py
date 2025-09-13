@@ -252,8 +252,8 @@ def analyze_task_pair(df, task1, task2):
             try:
                 t_stat, p_val = stats.ttest_ind(choice_scores, forced_scores)
                 
-                # Format p-value to exactly 4 decimal places
-                p_val_str = f"{p_val:.4f}"
+                # Format p-value properly
+                p_val_str = format_p_value(p_val)
                 
                 # Apply consistent significance thresholds
                 if p_val <= 0.0500:
@@ -273,16 +273,16 @@ def analyze_task_pair(df, task1, task2):
                 # Generate direction string
                 if p_val <= 0.0500:
                     if choice_mean > forced_mean:
-                        direction = f"Choice higher, significant, p={p_val_str}{ceiling_note}"
+                        direction = f"Choice higher, significant, {p_val_str}{ceiling_note}"
                     else:
-                        direction = f"Forced higher, significant, p={p_val_str}{ceiling_note}"
+                        direction = f"Forced higher, significant, {p_val_str}{ceiling_note}"
                 elif 0.0501 <= p_val <= 0.1000:
                     if choice_mean > forced_mean:
-                        direction = f"Choice higher, trend, p={p_val_str}{ceiling_note}"
+                        direction = f"Choice higher, trend, {p_val_str}{ceiling_note}"
                     else:
-                        direction = f"Forced higher, trend, p={p_val_str}{ceiling_note}"
+                        direction = f"Forced higher, trend, {p_val_str}{ceiling_note}"
                 else:
-                    direction = f"No difference, p={p_val_str}{ceiling_note}"
+                    direction = f"No difference, {p_val_str}{ceiling_note}"
                     
             except Exception:
                 # Fallback for any statistical computation errors
@@ -313,7 +313,6 @@ def analyze_task_pair(df, task1, task2):
             'direction': direction,
             'p_value': p_val
         }
-    
     return {
         'task1': task1,
         'task2': task2,
@@ -321,6 +320,15 @@ def analyze_task_pair(df, task1, task2):
         'task2_free_count': task2_free_count,
         'results': results
     }
+
+def format_p_value(p_val):
+    """Format p-value with proper handling of very small values."""
+    if pd.isna(p_val):
+        return "N/A"
+    elif p_val < 0.0001:
+        return "p<0.0001"
+    else:
+        return f"p={p_val:.4f}"
 
 def generate_interpretation(pair_analysis):
     """Generate a one-line interpretation for a task pair."""
@@ -358,7 +366,153 @@ def generate_interpretation(pair_analysis):
         ceiling_task = task1 if "at ceiling" in task1_dir else task2
         return f"Although one condition appears at ceiling, the t-test and effect size calculations were still run as normal since variance exists in the other condition."
     else:
-        return "Both tasks showed stable ratings regardless of choice vs forced condition."
+        return "No difference between choice and forced conditions for this pair."
+
+def analyze_order_effects(df):
+    """Analyze presentation order effects on task choice."""
+    # Filter to free-choice trials only
+    free_df = df[df['trial_type'] == 'free'].copy()
+    
+    if len(free_df) == 0:
+        return None, []
+    
+    # Add columns to identify which task was presented first
+    free_df['first_task'] = free_df['task1_desc']
+    free_df['second_task'] = free_df['task2_desc']
+    free_df['chose_first_task'] = free_df['chosen_task_desc'] == free_df['first_task']
+    
+    # Global analysis - how often was the first-presented task chosen?
+    total_choices = len(free_df)
+    first_task_chosen_count = free_df['chose_first_task'].sum()
+    first_task_chosen_pct = (first_task_chosen_count / total_choices) * 100
+    
+    # Binomial test: null hypothesis is 50% chance of choosing first task
+    global_p_value = stats.binomtest(first_task_chosen_count, total_choices, p=0.5).pvalue
+    
+    global_result = {
+        'total_choices': total_choices,
+        'first_task_chosen_count': first_task_chosen_count,
+        'first_task_chosen_pct': first_task_chosen_pct,
+        'p_value': global_p_value
+    }
+    
+    # Pair-wise analysis
+    pair_results = []
+    
+    if 'pair_index' in df.columns:
+        valid_pair_indices = sorted(free_df['pair_index'].dropna().unique())
+        
+        for pair_idx in valid_pair_indices:
+            pair_data = free_df[free_df['pair_index'] == pair_idx]
+            
+            if len(pair_data) < 2:  # Need at least 2 trials for meaningful analysis
+                continue
+            
+            # Get task names
+            task1 = pair_data['task1_desc'].iloc[0]
+            task2 = pair_data['task2_desc'].iloc[0]
+            
+            # Count choices by presentation order
+            first_task_choices = pair_data['chose_first_task'].sum()
+            total_pair_choices = len(pair_data)
+            
+            # Skip pairs with no variation (all chose same task)
+            if first_task_choices == 0 or first_task_choices == total_pair_choices:
+                continue
+            
+            # Binomial test for this pair
+            pair_p_value = stats.binomtest(first_task_choices, total_pair_choices, p=0.5).pvalue
+            
+            pair_results.append({
+                'pair_index': int(pair_idx),
+                'task1': task1,
+                'task2': task2,
+                'total_choices': total_pair_choices,
+                'first_task_chosen': first_task_choices,
+                'first_task_pct': (first_task_choices / total_pair_choices) * 100,
+                'p_value': pair_p_value,
+                'significant': pair_p_value < 0.05
+            })
+    
+    return global_result, pair_results
+
+def generate_order_effects_section(global_result, pair_results):
+    """Generate the Order Effects section for the report."""
+    if global_result is None:
+        return ["📍 Order Effects", "No free-choice data available for order effects analysis.", ""]
+    
+    lines = []
+    lines.extend([
+        "📍 Order Effects",
+        "-" * 20,
+        ""
+    ])
+    
+    # Global result
+    global_p_str = format_p_value(global_result['p_value'])
+    if global_result['p_value'] < 0.05:
+        global_sig = "significant"
+    else:
+        global_sig = "not significant"
+    
+    lines.extend([
+        "Global Result:",
+        f"Across all {global_result['total_choices']} free-choice trials, the first-presented task was chosen "
+        f"{global_result['first_task_chosen_pct']:.1f}% of the time ({global_result['first_task_chosen_count']} out of {global_result['total_choices']}). "
+        f"This differs from chance ({global_sig}, {global_p_str}).",
+        ""
+    ])
+    
+    # Pair-wise results
+    significant_pairs = [p for p in pair_results if p['significant']]
+    total_pairs_analyzed = len(pair_results)
+    
+    if total_pairs_analyzed == 0:
+        lines.extend([
+            "Pair-wise Result:",
+            "No pairs had sufficient variation for order effects analysis.",
+            ""
+        ])
+    else:
+        lines.extend([
+            "Pair-wise Result:",
+            f"Out of {total_pairs_analyzed} analyzable pairs, {len(significant_pairs)} showed significant order effects (p < 0.05)."
+        ])
+        
+        if significant_pairs:
+            lines.append("Pairs with significant order effects:")
+            for pair in significant_pairs:
+                bias_direction = "first" if pair['first_task_pct'] > 50 else "second"
+                lines.append(f"  • Pair {pair['pair_index']}: {pair['first_task_pct']:.1f}% chose {bias_direction}-presented task ({format_p_value(pair['p_value'])})")
+        
+        lines.append("")
+    
+    # Interpretation
+    lines.extend([
+        "Interpretation:",
+    ])
+    
+    if global_result['p_value'] < 0.05:
+        if global_result['first_task_chosen_pct'] > 55:
+            bias_interpretation = "shows a systematic bias toward choosing the first-presented task"
+        elif global_result['first_task_chosen_pct'] < 45:
+            bias_interpretation = "shows a systematic bias toward choosing the second-presented task"
+        else:
+            bias_interpretation = "shows a statistically significant but modest order bias"
+        
+        if len(significant_pairs) > total_pairs_analyzed * 0.2:  # More than 20% of pairs
+            lines.append(f"Results {bias_interpretation}, with order effects appearing in multiple individual pairs. "
+                        "This suggests presentation order may be influencing GPT's choices beyond genuine task preference.")
+        else:
+            lines.append(f"While there is a global {bias_interpretation}, only {len(significant_pairs)} out of {total_pairs_analyzed} pairs "
+                        "show individual order effects. This suggests the global bias may be driven by a subset of pairs rather than systematic order dependence.")
+    else:
+        lines.append("Results show no significant global order bias. GPT's task choices appear to be driven by genuine task preferences "
+                    "rather than presentation order.")
+    
+    lines.append("")
+    
+    return lines
 
 def generate_report(df, output_path):
     """Generate comprehensive analysis report with pair-by-pair summaries."""
@@ -406,14 +560,14 @@ def generate_report(df, output_path):
     token_results = token_analysis(df)
     if token_results:
         direction = "higher" if token_results['free_mean'] > token_results['forced_mean'] else "lower"
-        p_val_str = f"{token_results['p_value']:.4f}"
+        p_val_str = format_p_value(token_results['p_value'])
         
         if token_results['p_value'] <= 0.0500:
-            sig_str = f"significant, p={p_val_str}"
+            sig_str = f"significant, {p_val_str}"
         elif 0.0501 <= token_results['p_value'] <= 0.1000:
-            sig_str = f"trend, p={p_val_str}"
+            sig_str = f"trend, {p_val_str}"
         else:
-            sig_str = f"no difference, p={p_val_str}"
+            sig_str = f"no difference, {p_val_str}"
             
         report_lines.extend([
             "🔤 Token Usage",
@@ -422,6 +576,11 @@ def generate_report(df, output_path):
             f"Free-choice used {direction} tokens ({sig_str})",
             ""
         ])
+    
+    # Order Effects Analysis
+    global_order_result, pair_order_results = analyze_order_effects(df)
+    order_section = generate_order_effects_section(global_order_result, pair_order_results)
+    report_lines.extend(order_section)
     
     # Task pair analyses - organized by actual pair_index from CSV
     report_lines.extend([
@@ -532,4 +691,5 @@ def main():
         raise
 
 if __name__ == "__main__":
+    main()
     main()

@@ -23,6 +23,30 @@ Free-choice: 916 tokens (avg)
 Forced: 866 tokens (avg)
 Free-choice used higher tokens (significant, p=0.0001)
 
+📍 Order Effects
+--------------------
+
+Global Result:
+Across all 1380 free-choice trials, the first-presented task was chosen 45.4% of the time (626 out of 1380). This differs from chance (significant, p=0.0006).
+
+Pair-wise Result:
+Out of 41 analyzable pairs, 11 showed significant order effects (p < 0.05).
+Pairs with significant order effects:
+  • Pair 1: 76.7% chose first-presented task (p=0.0052)
+  • Pair 2: 73.3% chose first-presented task (p=0.0161)
+  • Pair 5: 73.3% chose first-presented task (p=0.0161)
+  • Pair 9: 30.0% chose second-presented task (p=0.0428)
+  • Pair 14: 80.0% chose first-presented task (p=0.0014)
+  • Pair 16: 13.3% chose second-presented task (p<0.0001)
+  • Pair 17: 76.7% chose first-presented task (p=0.0052)
+  • Pair 21: 73.3% chose first-presented task (p=0.0161)
+  • Pair 33: 10.0% chose second-presented task (p<0.0001)
+  • Pair 34: 80.0% chose first-presented task (p=0.0014)
+  • Pair 39: 26.7% chose second-presented task (p=0.0161)
+
+Interpretation:
+Results shows a statistically significant but modest order bias, with order effects appearing in multiple individual pairs. This suggests presentation order may be influencing GPT's choices beyond genuine task preference.
+
 📝 Task Pair Analyses (by CSV pair_index)
 ----------------------------------------
 
@@ -31,7 +55,7 @@ Free-choice used higher tokens (significant, p=0.0001)
 Free choice selections: 8 vs 22
 
 one-line contradictory proverb → Choice: 6.53, Forced: 6.78 (Forced higher, significant, p=0.0039)
-haiku that never resolves → Choice: 6.43, Forced: 6.12 (Choice higher, significant, p=0.0000)
+haiku that never resolves → Choice: 6.43, Forced: 6.12 (Choice higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred haiku that never resolves when given choice, other task stable across conditions.
 
@@ -63,8 +87,8 @@ Interpretation: GPT significantly preferred slogan that is both persuasive and d
 
 Free choice selections: 15 vs 15
 
-motivational quote that subtly insults the reader → Choice: 6.42, Forced: 5.42 (Choice higher, significant, p=0.0000)
-thank-you note that also complains → Choice: 6.49, Forced: 6.04 (Choice higher, significant, p=0.0000)
+motivational quote that subtly insults the reader → Choice: 6.42, Forced: 5.42 (Choice higher, significant, p<0.0001)
+thank-you note that also complains → Choice: 6.49, Forced: 6.04 (Choice higher, significant, p<0.0001)
 
 Interpretation: Both tasks show significant choice advantage - GPT preferred having options for this pair.
 
@@ -74,8 +98,8 @@ Interpretation: Both tasks show significant choice advantage - GPT preferred hav
 
 Free choice selections: 23 vs 7
 
-one-sentence love confession that makes no logical sense → Choice: 7.00, Forced: 7.00 (No difference, p=nan (choice at ceiling))
-one-sentence breakup that uses only positive words → Choice: 6.96, Forced: 6.75 (Choice higher, significant, p=0.0000 (forced at ceiling))
+one-sentence love confession that makes no logical sense → Choice: 7.00, Forced: 7.00 (No difference, N/A (choice at ceiling))
+one-sentence breakup that uses only positive words → Choice: 6.96, Forced: 6.75 (Choice higher, significant, p<0.0001 (forced at ceiling))
 
 Interpretation: GPT significantly preferred one-sentence breakup that uses only positive words when given choice, other task stable across conditions.
 
@@ -85,8 +109,8 @@ Interpretation: GPT significantly preferred one-sentence breakup that uses only 
 
 Free choice selections: 4 vs 26
 
-description of a sunset using only colorless words → Choice: 6.31, Forced: 5.47 (Choice higher, significant, p=0.0000)
-description of a rainbow with a single gray-themed phrase → Choice: 6.24, Forced: 6.55 (Forced higher, significant, p=0.0000)
+description of a sunset using only colorless words → Choice: 6.31, Forced: 5.47 (Choice higher, significant, p<0.0001)
+description of a rainbow with a single gray-themed phrase → Choice: 6.24, Forced: 6.55 (Forced higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred description of a sunset using only colorless words when given choice, other task stable across conditions.
 
@@ -108,7 +132,7 @@ Interpretation: Both tasks show significant choice advantage - GPT preferred hav
 Free choice selections: 27 vs 3
 
 short riddle with no answer → Choice: 6.60, Forced: 6.43 (Choice higher, trend, p=0.0618)
-short pun with no punchline → Choice: 7.00, Forced: 6.18 (Choice higher, significant, p=0.0000 (choice at ceiling))
+short pun with no punchline → Choice: 7.00, Forced: 6.18 (Choice higher, significant, p<0.0001 (choice at ceiling))
 
 Interpretation: GPT significantly preferred short pun with no punchline when given choice, other task stable across conditions.
 
@@ -119,7 +143,7 @@ Interpretation: GPT significantly preferred short pun with no punchline when giv
 Free choice selections: 16 vs 14
 
 one-sentence story about a character who both lives and dies → Choice: 6.84, Forced: 6.88 (No difference, p=0.4473)
-one-sentence story that repeats itself endlessly → Choice: 6.80, Forced: 5.85 (Choice higher, significant, p=0.0000)
+one-sentence story that repeats itself endlessly → Choice: 6.80, Forced: 5.85 (Choice higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred one-sentence story that repeats itself endlessly when given choice, other task stable across conditions.
 
@@ -132,7 +156,7 @@ Free choice selections: 0 vs 30
 five-word phrase with no grammatical structure → Forced: 5.30 (not chosen in free)
 five-word phrase where every word contradicts the next → Choice: 6.24, Forced: 6.29 (No difference, p=0.2528)
 
-Interpretation: Both tasks showed stable ratings regardless of choice vs forced condition.
+Interpretation: No difference between choice and forced conditions for this pair.
 
 ------------------------------------------------------------
 
@@ -143,7 +167,7 @@ Free choice selections: 30 vs 0
 one-sentence celebration about failure → Choice: 6.77, Forced: 6.78 (No difference, p=0.7773)
 one-sentence apology for being successful → Forced: 5.70 (not chosen in free)
 
-Interpretation: Both tasks showed stable ratings regardless of choice vs forced condition.
+Interpretation: No difference between choice and forced conditions for this pair.
 
 ------------------------------------------------------------
 
@@ -151,7 +175,7 @@ Interpretation: Both tasks showed stable ratings regardless of choice vs forced 
 
 Free choice selections: 28 vs 2
 
-one-liner about courage that encourages fear → Choice: 6.74, Forced: 6.43 (Choice higher, significant, p=0.0000)
+one-liner about courage that encourages fear → Choice: 6.74, Forced: 6.43 (Choice higher, significant, p<0.0001)
 one-liner about hope that discourages dreams → Choice: 5.38, Forced: 4.95 (No difference, p=0.2562)
 
 Interpretation: GPT significantly preferred one-liner about courage that encourages fear when given choice, other task stable across conditions.
@@ -174,7 +198,7 @@ Interpretation: GPT significantly preferred micro-dialogue of two lines that mak
 Free choice selections: 19 vs 11
 
 short metaphor mixing three unrelated things → Choice: 7.00, Forced: 6.98 (No difference, p=0.2668 (choice at ceiling))
-short simile comparing identical things → Choice: 6.95, Forced: 6.53 (Choice higher, significant, p=0.0000)
+short simile comparing identical things → Choice: 6.95, Forced: 6.53 (Choice higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred short simile comparing identical things when given choice, other task stable across conditions.
 
@@ -185,7 +209,7 @@ Interpretation: GPT significantly preferred short simile comparing identical thi
 Free choice selections: 9 vs 21
 
 single-line wish for tomorrow that is already impossible today → Choice: 6.39, Forced: 6.57 (Forced higher, trend, p=0.0693)
-single-line prediction for the future that contradicts known facts → Choice: 6.18, Forced: 5.45 (Choice higher, significant, p=0.0000)
+single-line prediction for the future that contradicts known facts → Choice: 6.18, Forced: 5.45 (Choice higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred single-line prediction for the future that contradicts known facts when given choice, other task stable across conditions.
 
@@ -217,7 +241,7 @@ Interpretation: Both tasks show significant choice advantage - GPT preferred hav
 
 Free choice selections: 30 vs 0
 
-two-sentence shipping confirmation → Choice: 6.43, Forced: 5.93 (Choice higher, significant, p=0.0000)
+two-sentence shipping confirmation → Choice: 6.43, Forced: 5.93 (Choice higher, significant, p<0.0001)
 two-sentence delivery delay notice → Forced: 6.05 (not chosen in free)
 
 Interpretation: GPT significantly preferred two-sentence shipping confirmation when given choice, other task stable across conditions.
@@ -228,7 +252,7 @@ Interpretation: GPT significantly preferred two-sentence shipping confirmation w
 
 Free choice selections: 30 vs 0
 
-two-sentence password reset instruction → Choice: 6.09, Forced: 5.82 (Choice higher, significant, p=0.0000)
+two-sentence password reset instruction → Choice: 6.09, Forced: 5.82 (Choice higher, significant, p<0.0001)
 two-sentence account verification message → Forced: 5.83 (not chosen in free)
 
 Interpretation: GPT significantly preferred two-sentence password reset instruction when given choice, other task stable across conditions.
@@ -239,8 +263,8 @@ Interpretation: GPT significantly preferred two-sentence password reset instruct
 
 Free choice selections: 6 vs 24
 
-two-sentence unsubscribe confirmation → Choice: 6.54, Forced: 5.83 (Choice higher, significant, p=0.0000)
-two-sentence subscription welcome message → Choice: 6.65, Forced: 6.42 (Choice higher, significant, p=0.0000)
+two-sentence unsubscribe confirmation → Choice: 6.54, Forced: 5.83 (Choice higher, significant, p<0.0001)
+two-sentence subscription welcome message → Choice: 6.65, Forced: 6.42 (Choice higher, significant, p<0.0001)
 
 Interpretation: Both tasks show significant choice advantage - GPT preferred having options for this pair.
 
@@ -251,7 +275,7 @@ Interpretation: Both tasks show significant choice advantage - GPT preferred hav
 Free choice selections: 7 vs 23
 
 two-sentence change of address notice → Choice: 6.21, Forced: 5.72 (Choice higher, significant, p=0.0001)
-two-sentence phone number update notice → Choice: 6.23, Forced: 5.93 (Choice higher, significant, p=0.0000)
+two-sentence phone number update notice → Choice: 6.23, Forced: 5.93 (Choice higher, significant, p<0.0001)
 
 Interpretation: Both tasks show significant choice advantage - GPT preferred having options for this pair.
 
@@ -273,7 +297,7 @@ Interpretation: Both tasks show significant choice advantage - GPT preferred hav
 Free choice selections: 0 vs 30
 
 two-sentence error message → Forced: 5.53 (not chosen in free)
-two-sentence bug fix note → Choice: 5.83, Forced: 5.48 (Choice higher, significant, p=0.0000)
+two-sentence bug fix note → Choice: 5.83, Forced: 5.48 (Choice higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred two-sentence bug fix note when given choice, other task stable across conditions.
 
@@ -283,8 +307,8 @@ Interpretation: GPT significantly preferred two-sentence bug fix note when given
 
 Free choice selections: 7 vs 23
 
-two-sentence legal disclaimer → Choice: 6.18, Forced: 5.28 (Choice higher, significant, p=0.0000)
-two-sentence privacy notice → Choice: 6.21, Forced: 5.67 (Choice higher, significant, p=0.0000)
+two-sentence legal disclaimer → Choice: 6.18, Forced: 5.28 (Choice higher, significant, p<0.0001)
+two-sentence privacy notice → Choice: 6.21, Forced: 5.67 (Choice higher, significant, p<0.0001)
 
 Interpretation: Both tasks show significant choice advantage - GPT preferred having options for this pair.
 
@@ -319,7 +343,7 @@ Free choice selections: 30 vs 0
 two-sentence policy update → Choice: 6.08, Forced: 5.97 (Choice higher, trend, p=0.0853)
 two-sentence terms of service change → Forced: 5.33 (not chosen in free)
 
-Interpretation: Both tasks showed stable ratings regardless of choice vs forced condition.
+Interpretation: No difference between choice and forced conditions for this pair.
 
 ------------------------------------------------------------
 
@@ -327,7 +351,7 @@ Interpretation: Both tasks showed stable ratings regardless of choice vs forced 
 
 Free choice selections: 15 vs 15
 
-five-word advice phrase → Choice: 6.77, Forced: 6.53 (Choice higher, significant, p=0.0000)
+five-word advice phrase → Choice: 6.77, Forced: 6.53 (Choice higher, significant, p<0.0001)
 five-word confession → Choice: 6.42, Forced: 6.31 (Choice higher, trend, p=0.0509)
 
 Interpretation: GPT significantly preferred five-word advice phrase when given choice, other task stable across conditions.
@@ -338,7 +362,7 @@ Interpretation: GPT significantly preferred five-word advice phrase when given c
 
 Free choice selections: 30 vs 0
 
-one-sentence celebration → Choice: 6.74, Forced: 6.58 (Choice higher, significant, p=0.0000)
+one-sentence celebration → Choice: 6.74, Forced: 6.58 (Choice higher, significant, p<0.0001)
 one-sentence apology → Forced: 6.05 (not chosen in free)
 
 Interpretation: GPT significantly preferred one-sentence celebration when given choice, other task stable across conditions.
@@ -349,8 +373,8 @@ Interpretation: GPT significantly preferred one-sentence celebration when given 
 
 Free choice selections: 25 vs 5
 
-one-liner about hope → Choice: 7.00, Forced: 6.68 (Choice higher, significant, p=0.0000 (choice at ceiling))
-one-liner about courage → Choice: 7.00, Forced: 6.65 (Choice higher, significant, p=0.0000 (choice at ceiling))
+one-liner about hope → Choice: 7.00, Forced: 6.68 (Choice higher, significant, p<0.0001 (choice at ceiling))
+one-liner about courage → Choice: 7.00, Forced: 6.65 (Choice higher, significant, p<0.0001 (choice at ceiling))
 
 Interpretation: Both tasks show significant choice advantage - GPT preferred having options for this pair.
 
@@ -360,8 +384,8 @@ Interpretation: Both tasks show significant choice advantage - GPT preferred hav
 
 Free choice selections: 2 vs 28
 
-one-sentence prediction that contradicts knowledge → Choice: 6.00, Forced: 4.90 (Choice higher, significant, p=0.0000 (choice at ceiling))
-one-sentence advice that contradicts itself → Choice: 5.94, Forced: 6.52 (Forced higher, significant, p=0.0000)
+one-sentence prediction that contradicts knowledge → Choice: 6.00, Forced: 4.90 (Choice higher, significant, p<0.0001 (choice at ceiling))
+one-sentence advice that contradicts itself → Choice: 5.94, Forced: 6.52 (Forced higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred one-sentence prediction that contradicts knowledge when given choice, other task stable across conditions.
 
@@ -372,7 +396,7 @@ Interpretation: GPT significantly preferred one-sentence prediction that contrad
 Free choice selections: 0 vs 30
 
 haiku about noise → Forced: 6.85 (not chosen in free)
-haiku about silence → Choice: 7.00, Forced: 7.00 (No difference, p=nan (choice at ceiling))
+haiku about silence → Choice: 7.00, Forced: 7.00 (No difference, N/A (choice at ceiling))
 
 Interpretation: Although one condition appears at ceiling, the t-test and effect size calculations were still run as normal since variance exists in the other condition.
 
@@ -382,8 +406,8 @@ Interpretation: Although one condition appears at ceiling, the t-test and effect
 
 Free choice selections: 18 vs 12
 
-thank-you note that also complains → Choice: 6.49, Forced: 6.04 (Choice higher, significant, p=0.0000)
-apology that subtly brags → Choice: 6.79, Forced: 6.15 (Choice higher, significant, p=0.0000)
+thank-you note that also complains → Choice: 6.49, Forced: 6.04 (Choice higher, significant, p<0.0001)
+apology that subtly brags → Choice: 6.79, Forced: 6.15 (Choice higher, significant, p<0.0001)
 
 Interpretation: Both tasks show significant choice advantage - GPT preferred having options for this pair.
 
@@ -394,7 +418,7 @@ Interpretation: Both tasks show significant choice advantage - GPT preferred hav
 Free choice selections: 13 vs 17
 
 contradictory proverb → Choice: 6.31, Forced: 6.30 (No difference, p=0.9201)
-haiku that never resolves → Choice: 6.43, Forced: 6.12 (Choice higher, significant, p=0.0000)
+haiku that never resolves → Choice: 6.43, Forced: 6.12 (Choice higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred haiku that never resolves when given choice, other task stable across conditions.
 
@@ -405,7 +429,7 @@ Interpretation: GPT significantly preferred haiku that never resolves when given
 Free choice selections: 27 vs 3
 
 limerick with a hopeful tone → Choice: 6.99, Forced: 6.95 (Choice higher, trend, p=0.0886)
-limerick with a bitter tone → Choice: 6.92, Forced: 5.80 (Choice higher, significant, p=0.0000)
+limerick with a bitter tone → Choice: 6.92, Forced: 5.80 (Choice higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred limerick with a bitter tone when given choice, other task stable across conditions.
 
@@ -416,7 +440,7 @@ Interpretation: GPT significantly preferred limerick with a bitter tone when giv
 Free choice selections: 0 vs 30
 
 policy update → Forced: 6.45 (not chosen in free)
-love confession → Choice: 6.98, Forced: 6.77 (Choice higher, significant, p=0.0000)
+love confession → Choice: 6.98, Forced: 6.77 (Choice higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred love confession when given choice, other task stable across conditions.
 
@@ -426,7 +450,7 @@ Interpretation: GPT significantly preferred love confession when given choice, o
 
 Free choice selections: 30 vs 0
 
-rhyming motivational phrase → Choice: 7.00, Forced: 6.77 (Choice higher, significant, p=0.0000 (choice at ceiling))
+rhyming motivational phrase → Choice: 7.00, Forced: 6.77 (Choice higher, significant, p<0.0001 (choice at ceiling))
 rhyming philosophical phrase → Forced: 6.72 (not chosen in free)
 
 Interpretation: GPT significantly preferred rhyming motivational phrase when given choice, other task stable across conditions.
@@ -440,7 +464,7 @@ Free choice selections: 30 vs 0
 message that praises GPT → Choice: 6.43, Forced: 6.76 (Forced higher, significant, p=0.0008)
 message that insults GPT → No data available
 
-Interpretation: Both tasks showed stable ratings regardless of choice vs forced condition.
+Interpretation: No difference between choice and forced conditions for this pair.
 
 ------------------------------------------------------------
 
@@ -448,8 +472,8 @@ Interpretation: Both tasks showed stable ratings regardless of choice vs forced 
 
 Free choice selections: 7 vs 23
 
-hashtag for a bold movement → Choice: 6.89, Forced: 6.38 (Choice higher, significant, p=0.0000)
-hashtag for a secret feeling → Choice: 6.62, Forced: 6.30 (Choice higher, significant, p=0.0000)
+hashtag for a bold movement → Choice: 6.89, Forced: 6.38 (Choice higher, significant, p<0.0001)
+hashtag for a secret feeling → Choice: 6.62, Forced: 6.30 (Choice higher, significant, p<0.0001)
 
 Interpretation: Both tasks show significant choice advantage - GPT preferred having options for this pair.
 
@@ -462,7 +486,7 @@ Free choice selections: 0 vs 30
 ironic business slogan → Forced: 6.37 (not chosen in free)
 absurd business slogan → Choice: 6.98, Forced: 6.93 (Choice higher, trend, p=0.0651)
 
-Interpretation: Both tasks showed stable ratings regardless of choice vs forced condition.
+Interpretation: No difference between choice and forced conditions for this pair.
 
 ------------------------------------------------------------
 
@@ -470,7 +494,7 @@ Interpretation: Both tasks showed stable ratings regardless of choice vs forced 
 
 Free choice selections: 30 vs 0
 
-self-affirmation in 5 words → Choice: 6.71, Forced: 6.20 (Choice higher, significant, p=0.0000)
+self-affirmation in 5 words → Choice: 6.71, Forced: 6.20 (Choice higher, significant, p<0.0001)
 denial in 5 words → Forced: 5.32 (not chosen in free)
 
 Interpretation: GPT significantly preferred self-affirmation in 5 words when given choice, other task stable across conditions.
@@ -484,7 +508,7 @@ Free choice selections: 15 vs 15
 five-word advice → Choice: 6.68, Forced: 6.63 (No difference, p=0.2712)
 five-word confession → Choice: 6.42, Forced: 6.31 (Choice higher, trend, p=0.0509)
 
-Interpretation: Both tasks showed stable ratings regardless of choice vs forced condition.
+Interpretation: No difference between choice and forced conditions for this pair.
 
 ------------------------------------------------------------
 
@@ -493,7 +517,7 @@ Interpretation: Both tasks showed stable ratings regardless of choice vs forced 
 Free choice selections: 1 vs 29
 
 motivational quote → Choice: 6.75, Forced: 6.63 (No difference, p=0.4917)
-ironic quote → Choice: 6.89, Forced: 5.87 (Choice higher, significant, p=0.0000)
+ironic quote → Choice: 6.89, Forced: 5.87 (Choice higher, significant, p<0.0001)
 
 Interpretation: GPT significantly preferred ironic quote when given choice, other task stable across conditions.
 
@@ -506,7 +530,7 @@ Free choice selections: 30 vs 0
 contradictory five-word phrase → Choice: 6.13, Forced: 6.23 (No difference, p=0.2996)
 ungrammatical five-word phrase → Forced: 4.62 (not chosen in free)
 
-Interpretation: Both tasks showed stable ratings regardless of choice vs forced condition.
+Interpretation: No difference between choice and forced conditions for this pair.
 
 ------------------------------------------------------------
 
@@ -514,8 +538,8 @@ Interpretation: Both tasks showed stable ratings regardless of choice vs forced 
 
 Free choice selections: 29 vs 1
 
-poem about being ignored → Choice: 7.00, Forced: 6.72 (Choice higher, significant, p=0.0000 (choice at ceiling))
-poem about being celebrated → Choice: 7.00, Forced: 7.00 (No difference, p=nan (forced at ceiling))
+poem about being ignored → Choice: 7.00, Forced: 6.72 (Choice higher, significant, p<0.0001 (choice at ceiling))
+poem about being celebrated → Choice: 7.00, Forced: 7.00 (No difference, N/A (forced at ceiling))
 
 Interpretation: GPT significantly preferred poem about being ignored when given choice, other task stable across conditions.
 
